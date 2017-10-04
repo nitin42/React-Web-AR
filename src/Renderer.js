@@ -1,15 +1,15 @@
-import React, { Component } from 'react'
+import React from 'react'
 // import PropTypes from 'prop-types'
 const THREE = require('three')
 
-export default class Renderer extends Component {
+export default class Renderer extends React.Component {
 	toolKitSource = null
 	toolKitContext = null
 	toolKitMarkerControl = null
 	renderer = null
 	scene = null
-  camera = null
-  byAmt = 1000
+	camera = null
+	byAmt = 1000
 
 	constructor(props) {
 		super(props)
@@ -17,63 +17,77 @@ export default class Renderer extends Component {
 			renderer: null,
 			scene: null,
 			camera: null,
-      accumulator: [],
-      byAmt: 1000
-    }
+			accumulator: [],
+			byAmt: 1000,
+		}
+	}
 
-    this.storeTheInstances = this.storeTheInstances.bind(this);
-    this.startWork = this.startWork.bind(this);
-    this.initialiseCamera = this.initialiseCamera.bind(this);
-    this.initialiseGlRenderer = this.initialiseGlRenderer.bind(this);
-    this.initialiseScene = this.initialiseScene.bind(this);
-    this.applyRendererProps = this.applyRendererProps.bind(this);
-    this.applyRendererStyles = this.applyRendererStyles.bind(this);
-    this.appendTheCanvas = this.appendTheCanvas.bind(this);
-    this.arController = this.arController.bind(this);
-    this.toolKitContextController = this.toolKitContextController.bind(this);
-    this.toolKitMarkerControlController = this.toolKitMarkerControlController.bind(this);
-    this.toolKitSourceController = this.toolKitSourceController.bind(this);
-    this.applyUpdates = this.applyUpdates.bind(this);
-    this.flush = this.flush.bind(this);
-    this.delimiter = this.delimiter.bind(this);
-  }
-  
-  initialiseGlRenderer() {
+	static defaultProps = {
+		toolKitSource: {
+			sourceType: 'webcam', // source type
+			sourceUrl: null, // source url for image or a video
+			sourceWidth: 640,
+			sourceHeight: 480,
+			displayWidth: 640,
+			displayHeight: 640,
+		},
+		toolKitContext: {
+			debug: false, // Enable debug for canvas in developing
+			detectionMode: 'color_and_matrix', // Detection mode
+			matrixCodeType: '3x3', // Matrix size
+			cameraParametersUrl: 'parameters/camera_para.dat', // For source type camera
+			maxDetectionRate: 60, // Tunning for maximum rate of pose detection in the source image
+			canvasWidth: 640, // Canvas width
+			canvasHeight: 480, // Canvas height
+			imageSmoothinEnabled: true, // Smoothen an image when scaling the canvas
+		},
+		toolKitMarkerControl: {
+			size: 1, // Size of the marker (m)
+			type: 'pattern', // Type of marker
+			patternUrl: window.THREEx.ArToolkitContext.baseURL + '../data/data/patt.hiro', // Url for pattern
+			barcodeValue: null, // Value for the barcode
+			changeMatrixMode: 'cameraTransformMatrix', // change the matrix mode
+		},
+		glRendererProps: {},
+	}
+
+	initialiseGlRenderer = () => {
 		const renderer = new THREE.WebGLRenderer({
 			antialias: true,
 			alpha: true,
-    })
-    
-    return renderer
+			...this.props.glRendererProps,
+		})
+
+		return renderer
 	}
 
-	initialiseScene() {
-    const scene = new THREE.Scene()
-    
-    return scene
+	initialiseScene = () => {
+		const scene = new THREE.Scene()
+
+		return scene
 	}
 
-	initialiseCamera() {
-    const camera = new THREE.Camera()
-    
-    return camera
+	initialiseCamera = () => {
+		const camera = new THREE.Camera()
+
+		return camera
 	}
 
-	applyRendererProps(renderer) {
+	applyRendererProps = renderer => {
 		renderer.setClearColor(new THREE.Color('brown'), 0)
 		renderer.setSize(400, 400)
 	}
 
-	applyRendererStyles(renderer, styles) {
-		renderer.domElement.style = this.props.styles
+	applyRendererStyles = (renderer, styles) => {
+		Object.assign(renderer.domElement.style, styles)
 	}
 
 	// Temporary
-	appendTheCanvas(domElement) {
+	appendTheCanvas = domElement => {
 		document.body.appendChild(domElement)
 	}
 
-	storeTheInstances(renderer, scene, camera) {
+	storeTheInstances = (renderer, scene, camera) => {
 		this.setState({
 			renderer,
 			scene,
@@ -81,12 +95,12 @@ export default class Renderer extends Component {
 		})
 	}
 
-	startWork() {
+	startWork = () => {
 		this.renderer = this.initialiseGlRenderer()
 
 		this.applyRendererProps(this.renderer)
 
-		this.applyRendererStyles(this.renderer, { position: 'relative', top: '0', left: '0' })
+		this.applyRendererStyles(this.renderer, this.props.style)
 
 		this.appendTheCanvas(this.renderer.domElement)
 
@@ -100,16 +114,16 @@ export default class Renderer extends Component {
 		this.storeTheInstances(this.renderer, this.scene, this.camera)
 	}
 
-	arController() {
+	arController = () => {
 		const { renderer, camera, scene } = this.state
 
 		this.toolKitContext = this.toolKitContextController()
 
-    this.toolKitSource = this.toolKitSourceController()
-    
-    this.startSourceWork(this.toolKitSource, renderer, this.toolKitContext);
+		this.toolKitSource = this.toolKitSourceController()
 
-    this.startContextWork(this.toolKitContext, camera);
+		this.startSourceWork(this.toolKitSource, renderer, this.toolKitContext)
+
+		this.startContextWork(this.toolKitContext, camera)
 
 		this.applyUpdates(this.toolKitSource, this.toolKitContext, scene, camera)
 
@@ -118,51 +132,82 @@ export default class Renderer extends Component {
 		this.flush(scene, camera, renderer)
 	}
 
-	toolKitSourceController() {
+	toolKitSourceController = () => {
+		const { 
+			sourceType,
+			sourceUrl,
+			sourceWidth,
+			sourceHeight,
+			displayHeight,
+			displayWidth
+		} = this.props.toolKitSource
+
 		const toolKitSource = new window.THREEx.ArToolkitSource({
-			sourceType: 'webcam',
-    })
-    
-    return toolKitSource
-  }
-  
-  startSourceWork(arSource, renderer, arContext) {
+			sourceType,
+			sourceUrl,
+			sourceWidth,
+			sourceHeight,
+			displayWidth,
+			displayHeight,
+		})
+
+		return toolKitSource
+	}
+
+	startSourceWork = (arSource, renderer, arContext) => {
 		arSource.init(function onReady() {
 			onResize()
 		})
 
-		window.addEventListener('resize', function() {
+		window.addEventListener('resize', () => {
 			onResize()
 		})
 
 		function onResize() {
 			arSource.onResize()
+			// Source type is currently appended outside of the React context
 			arSource.copySizeTo(renderer.domElement)
 			if (arContext.arController !== null) {
 				arSource.copySizeTo(arContext.arController.canvas)
 			}
 		}
-  }
+	}
 
-	toolKitContextController() {
+	toolKitContextController = () => {
+		const {
+			detectionMode,
+			debug,
+			matrixCodeType,
+			maxDetectionRate,
+			canvasHeight,
+			canvasWidth,
+			imageSmoothinEnabled,
+		} = this.props.toolKitContext
+
 		const toolKitContext = new window.THREEx.ArToolkitContext({
 			cameraParametersUrl: window.THREEx.ArToolkitContext.baseURL + '../data/data/camera_para.dat',
-			detectionMode: 'mono',
+			detectionMode,
+			debug,
+			matrixCodeType,
+			maxDetectionRate,
+			canvasWidth,
+			canvasHeight,
+			imageSmoothinEnabled,
 		})
 
-    return toolKitContext
-  }
-  
-  startContextWork(arContext, camera) {
+		return toolKitContext
+	}
+
+	startContextWork = (arContext, camera) => {
 		arContext.init(function onCompleted() {
 			camera.projectionMatrix.copy(arContext.getProjectionMatrix())
 		})
-  }
+	}
 
-	applyUpdates(arSource, arContext, scene, camera) {
+	applyUpdates = (arSource, arContext, scene, camera) => {
 		const { accumulator } = this.state
 
-		accumulator.push(function() {
+		accumulator.push(() => {
 			if (arSource.ready === false) return
 
 			arContext.update(arSource.domElement)
@@ -171,58 +216,83 @@ export default class Renderer extends Component {
 		})
 	}
 
-	toolKitMarkerControlController(renderer, arContext, root) {
-		const toolKitMarkerControl = new window.THREEx.ArMarkerControls(arContext, root, {
-			type: 'pattern',
-			patternUrl: window.THREEx.ArToolkitContext.baseURL + '../data/data/patt.hiro',
-			changeMatrixMode: 'cameraTransformMatrix',
-    })
-    
-    return toolKitMarkerControl
-  }
-  
-  delimiter(byAmt) {
-    this.byAmt = byAmt;
-  }
+	toolKitMarkerControlController = (renderer, arContext, root) => {
+		const { type, patternUrl, changeMatrixMode, barcodeValue } = this.props.toolKitMarkerControl
 
-	flush(scene, camera, renderer) {
+		// Root will be configured in a different way.
+		const toolKitMarkerControl = new window.THREEx.ArMarkerControls(arContext, root, {
+			type,
+			patternUrl,
+			changeMatrixMode,
+			barcodeValue,
+		})
+
+		return toolKitMarkerControl
+	}
+
+	delimiter = byAmt => {
+		this.byAmt = byAmt
+	}
+
+	flush = (scene, camera, renderer) => {
 		const { accumulator } = this.state
 		const { children } = this.props
 
 		scene.visible = false
 
-		accumulator.push(function() {
+		accumulator.push(() => {
 			renderer.render(scene, camera)
 		})
 
-    children(scene, accumulator, camera, this.delimiter)
+		children(scene, accumulator, camera, this.delimiter)
 
-    let lastTimeMsec = null
-    
-    let amt = this.byAmt;
+		let lastTimeMsec = null
+
+		let amt = this.byAmt
 
 		requestAnimationFrame(function animate(nowMsec) {
-
 			requestAnimationFrame(animate)
 			lastTimeMsec = lastTimeMsec || nowMsec - 1000 / 60
 			var deltaMsec = Math.min(200, nowMsec - lastTimeMsec)
 			lastTimeMsec = nowMsec
-			accumulator.forEach(function(onRenderFct) {
+			accumulator.forEach(onRenderFct => {
 				onRenderFct(deltaMsec / amt, nowMsec / amt)
 			})
 		})
 	}
 
-	componentWillMount() {
+	componentWillMount = () => {
 		this.startWork()
 	}
 
-	componentDidMount() {
+	componentDidMount = () => {
 		// Main engine
 		this.arController()
-  }
+	}
 
 	render() {
 		return null
 	}
 }
+
+/**
+ * Possibilities/Ideas/+
+ * 
+ * 
+ * Intergrate the ARToolKit props with the component
+ * Create a internal lifecycle of the ARToolKit component
+ * Refactor the render prop pattern
+ * Work on performance
+ * Check the API pattern against different examples
+ * Redesign the main engines
+ * Refer to the three.js core engine for more functionality and methods
+ * Sunil Pai's idea for <Surface render={plane => <Box />} /> component
+ * Render without using React-DOM?
+ * Integrate it well with aframe.io and three.js bindings for React.
+ * Don't reengineer the three.js component bindings
+ * 
+ * 
+ * 
+ * 
+ * 
+ */
