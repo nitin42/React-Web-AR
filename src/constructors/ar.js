@@ -1,3 +1,7 @@
+/**
+ * ARToolKit globals
+ */
+
 const ReactArToolKitContext = window.THREEx.ArToolkitContext
 
 const ReactArToolKitMarkerController = window.THREEx.ArMarkerControls

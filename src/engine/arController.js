@@ -3,8 +3,10 @@ import { toolKitContextController, startContextWork, applyUpdates } from '../AR/
 import toolKitMarkerControlController from '../AR/toolKitMarkerControl'
 import flush from '../AR/Render'
 
+// Hook for delimiting the animation
 const delimiter = (byAmt, amt) => amt = byAmt
 
+// Main engine
 const arController = (state, props, byAmt, localVars) => {
   let { toolKitContext, toolKitSource } = localVars
   const { renderer, camera, scene } = state
