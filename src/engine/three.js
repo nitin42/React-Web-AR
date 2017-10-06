@@ -1,10 +1,12 @@
 import { initialiseGlRenderer, applyRendererProps, applyRendererStyles } from '../AR/webGlRenderer'
 import { initialiseCamera, initialiseScene } from '../AR/ThreeContext'
 
+// [CURRENT_STATUS] - appended out of React context
 const appendTheCanvas = (domElement) => {
   document.body.appendChild(domElement)
 }
 
+// Start the initialisation process (glRenderer, Scene, Camera)
 const start = (rendererRef, sceneRef, cameraRef, store, props) => {
   // Create a gl renderer canvas
   rendererRef = initialiseGlRenderer(props)
