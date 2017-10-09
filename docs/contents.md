@@ -123,11 +123,11 @@ Controlling the position of the marker.
 
 `getParameters()`
 
-Get the [input parameters]()
+Get the [input parameters](#parameters)
 
 `setParameters()`
 
-Set the [input parameters]()
+Set the [input parameters](#parameters)
 
 `initialize(callback)`
 
