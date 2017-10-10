@@ -7,7 +7,7 @@ const appendTheCanvas = (domElement) => {
 }
 
 // Start the initialisation process (glRenderer, Scene, Camera)
-const start = (rendererRef, sceneRef, cameraRef, store, props) => {
+const start = (rendererRef, sceneRef, cameraRef, props) => {
   // Create a gl renderer canvas
   rendererRef = initialiseGlRenderer(props)
 
@@ -31,8 +31,12 @@ const start = (rendererRef, sceneRef, cameraRef, store, props) => {
   // Add the camera to the scene
   sceneRef.add(cameraRef)
 
-  // Updates the state (required for arController because local variables can still point to null)
-  store(rendererRef, sceneRef, cameraRef)
+  // Return the state (required for arController because local variables can still point to null)
+  return {
+    rendererRef,
+    sceneRef,
+    cameraRef,
+  }
 }
 
 export default start
