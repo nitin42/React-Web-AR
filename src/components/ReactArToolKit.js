@@ -18,49 +18,45 @@ export default class ReactArToolKit extends Component {
 	renderer = null
 	scene = null
 	camera = null
-	byAmt = 1000
+  byAmt = 1000
+  outputToFlush = null
 
 	state = {
-		renderer: null,
-		scene: null,
-		camera: null,
 		accumulator: [],
 		byAmt: 1000,
-		info: {},
 	}
 
 	static propTypes = ReactArToolKitComponentPropTypes()
 
 	static defaultProps = ReactArToolKitComponentDefaultProps()
 
-	// Temporary
-
-	storeTheInstances = (renderer, scene, camera) => {
-		this.setState({
-			renderer,
-			scene,
-			camera,
-		})
-	}
-
 	componentWillMount = () => {
 		// Initialise the ARToolKit (also ARController). State is not updated yet
-		start(this.renderer, this.scene, this.camera, this.storeTheInstances, this.props)
-	}
+    // Do not update the state here. Instead return references from start and update the class local refs
+    let { rendererRef, sceneRef, cameraRef } = start(this.renderer, this.scene, this.camera, this.props)
+
+    this.renderer = rendererRef;
+    this.scene = sceneRef;
+    this.camera = cameraRef;
+  }
 
 	componentDidMount = () => {
-		const localVars = {
+		const arToolKitUtils = {
 			context: this.toolKitContext,
-			source: this.toolKitSource
-		}
-
+      source: this.toolKitSource,
+      renderer: this.renderer,
+      scene: this.scene,
+      camera: this.camera,
+      accumulator: this.state.accumulator
+    }
+  
 		// Main engine
 		// State is updated and scene has been rendered to the screen
-		arController(this.state, this.props, this.byAmt, localVars)
+		this.outputToFlush = arController(arToolKitUtils, this.props, this.byAmt)
 	}
 
 	render() {
-		return null
+		return this.outputToFlush
 	}
 }
 
