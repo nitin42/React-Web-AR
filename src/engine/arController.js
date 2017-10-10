@@ -7,9 +7,8 @@ import flush from '../AR/Render'
 const delimiter = (byAmt, amt) => amt = byAmt
 
 // Main engine
-const arController = (state, props, byAmt, localVars) => {
-  let { toolKitContext, toolKitSource } = localVars
-  const { renderer, camera, scene } = state
+const arController = (state, props, byAmt) => {
+  let { toolKitContext, toolKitSource, renderer, camera, scene, accumulator } = state
 
   // Initialise the ARToolKitContext
   toolKitContext = toolKitContextController(props.toolKitContext)
@@ -24,13 +23,13 @@ const arController = (state, props, byAmt, localVars) => {
   startContextWork(toolKitContext, camera)
 
   // Update the context with source type and process the gl renderer (canvas)
-  applyUpdates(toolKitSource, toolKitContext, scene, camera, state.accumulator)
+  applyUpdates(toolKitSource, toolKitContext, scene, camera, accumulator)
 
   // Initialise the ARToolKitMarkerController
   toolKitMarkerControlController(props.toolKitMarkerControl, renderer, toolKitContext, camera)
 
   // Render everything (we render null right now because we don't create the canvas with React's API)
-  flush(scene, camera, renderer, state, props, delimiter, byAmt)
+  return flush(scene, camera, renderer, state, props, delimiter, byAmt)
 }
 
 export default arController
