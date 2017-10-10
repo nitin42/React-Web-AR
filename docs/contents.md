@@ -2,6 +2,7 @@
 
 * [Introduction](#introduction)
 * [Concepts](#concepts)
+* [Demo](https://github.com/nitin42/React-AR#more-information)
 * [Classification](#classification)
 * [Install](#install)
 * [Configuration](#configuration)
@@ -47,11 +48,11 @@ To use and manage the ArToolKit easily, [Jerome Etienne](https://twitter.com/jer
 
 ### threex.artoolkit Classification
 
-#### ArToolKitSource
+**ArToolKitSource**
 
 It is the source type which will analyse the position tracking of the marker. It can be a webcam,video or an image.
 
-##### Functionalities
+#### Functionalities
 
 * Initialise a source type (webcam, image or a video)
 * Appends the source type to the DOM and set ready flag to true
@@ -59,7 +60,7 @@ It is the source type which will analyse the position tracking of the marker. It
 * Resizes the element with browser's resize event
 * Copies the attributes to the canvas element for analysing the marker position
 
-##### Parameters
+#### Parameters
 
 ArToolKitSource supports following parameters - 
 
@@ -70,11 +71,11 @@ ArToolKitSource supports following parameters -
 * **displayWidth**
 * **displayHeight**
 
-#### ArToolKitContext
+**ArToolKitContext**
 
 Main engine. It finds the marker position on the image source.
 
-##### Functionalities
+#### Functionalities
 
 * It can be used to create a default camera based on the tracking backend input ('artoolkit'/'aruco')
 * Initialises the context with a callback 
@@ -83,7 +84,7 @@ Main engine. It finds the marker position on the image source.
 * It has getProjectionMatrix() method to transform the 3D matrix to the camera because
 the monitor (camera) is a 2D surface and to render the 3D surface on a camera, it has to transform the matrix (GL_PROJECTION matrix is used for this transformation)
 
-##### Parameters
+#### Parameters
 
 * **trackingBackend** - `['artoolkit', 'aruco', 'tango']`
 * **debug** - Enable debug for canvas in developing
@@ -95,11 +96,11 @@ the monitor (camera) is a 2D surface and to render the 3D surface on a camera, i
 * **canvasHeight** - Canvas height
 * **imageSmoothingEnabled** - Smoothen an image when scaling the canvas (default)
 
-#### ArToolKitMarkerControl
+**ArToolKitMarkerControl**
 
 Controlling the position of the marker.
 
-##### Functionalities
+#### Functionalities
 
 * It adds the marker with addMarker (low-level) to the ArToolKit core.
 * Removes the marker with dispose() method from the ArToolKit core.
@@ -108,7 +109,7 @@ Controlling the position of the marker.
   *	Top-level event `getMarker` is fired and a callback function `onMarkerFound` is called with an event for marker detection and updating the matrix.
   *	The event `markerFound` is called when the marker is detected. This is useful in some use case where you need to do something when the marker is not visible
 
-##### Parameters
+#### Parameters
 
 * **size** - Size of the marker
 * **type** - Type of marker `['pattern', 'barcode', 'unknown' ]`
