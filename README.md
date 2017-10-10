@@ -9,6 +9,10 @@
 
 [Delimiting rotation demo](https://twitter.com/NTulswani/status/915218481649377280)
 
+## Docs [WIP]
+
+You can see the detailed documentation [here](./docs/content.md)
+
 ## Interested ?
 
 Ping me on [Twitter](https://twitter.com/NTulswani) and we can discuss more ideas 😄
