@@ -11,7 +11,7 @@
 
 ## Docs [WIP]
 
-You can see the detailed documentation [here](./docs/content.md)
+You can see the detailed documentation [here](./docs/contents.md)
 
 ## Interested ?
 
