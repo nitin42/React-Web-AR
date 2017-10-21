@@ -39,9 +39,9 @@ This project aims to bridge AR with React to create AR on the web with ease. It 
 
 ArToolKit is based on two main registrations.
 
-* Geometric registration - Aligning the position of virtual environment with the actual environment.
+* **Geometric registration** - Aligning the position of virtual environment with the actual environment.
 
-* Photometric registration - Matching the appearance of objects in the virtual environment to the actual environment
+* **Photometric registration** - Matching the appearance of objects in the virtual environment to the actual environment
 
 You can find more detailed documention for ArToolKit [here](https://github.com/artoolkit/ar6-wiki).
 
@@ -119,7 +119,7 @@ Controlling the position of the marker.
 * **changeMatrixMode** - change the matrix mode
 * **minConfidence** - minimal confidence in the marke recognition - between `[0, 1]`
 
-## Classification
+## Classification (Implementation notes)
 
 ### ArToolKitSource
 
