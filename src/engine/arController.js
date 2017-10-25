@@ -4,7 +4,7 @@ import toolKitMarkerControlController from '../AR/toolKitMarkerControl'
 import flush from '../AR/Render'
 
 // Hook for delimiting the animation
-const delimiter = (byAmt, amt) => amt = byAmt
+// const delimiter = (byAmt, amt) => amt = byAmt
 
 // Main engine
 const arController = (state, props, byAmt) => {
@@ -29,7 +29,7 @@ const arController = (state, props, byAmt) => {
   toolKitMarkerControlController(props.toolKitMarkerControl, renderer, toolKitContext, camera)
 
   // Render everything (we render null right now because we don't create the canvas with React's API)
-  return flush(scene, camera, renderer, state, props, delimiter, byAmt)
+  return flush(scene, camera, renderer, state, props, byAmt)
 }
 
 export default arController
