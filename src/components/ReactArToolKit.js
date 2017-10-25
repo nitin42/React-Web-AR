@@ -22,7 +22,7 @@ export default class ReactArToolKit extends Component {
 
 	state = {
 		accumulator: [],
-		byAmt: 1000,
+		byAmt: 500,
 	}
 
 	static propTypes = ReactArToolKitComponentPropTypes()
@@ -57,7 +57,7 @@ export default class ReactArToolKit extends Component {
     }
   
 		// Main engine
-		this.outputToFlush = arController(arToolKitUtils, this.props, this.byAmt)
+    this.outputToFlush = arController(arToolKitUtils, this.props, this.byAmt)
 	}
 
   // For the first render, 'null' is render because we manually control the dom for rendering the canvas (will change this behaviour)
