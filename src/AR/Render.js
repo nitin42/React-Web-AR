@@ -1,4 +1,4 @@
-let flush = (scene, camera, renderer, state, props, delimiter, byAmt) => {
+let flush = (scene, camera, renderer, state, props, byAmt) => {
   const { accumulator } = state
   const { children } = props
 
@@ -10,12 +10,14 @@ let flush = (scene, camera, renderer, state, props, delimiter, byAmt) => {
     renderer.render(scene, camera)
   })
 
+  let newAm = 100
+
+  const frameSec = (amt) =>  newAm = amt
+
   // Render the 3D objects
-  children(scene, accumulator, camera, delimiter)
+  children(scene, accumulator, camera, frameSec)
 
   let lastTimeMsec = null
-
-  let amt = byAmt
 
   // Currently dispatching the animation via delimiter render prop
   requestAnimationFrame(function animate(nowMsec) {
@@ -24,7 +26,7 @@ let flush = (scene, camera, renderer, state, props, delimiter, byAmt) => {
     var deltaMsec = Math.min(200, nowMsec - lastTimeMsec)
     lastTimeMsec = nowMsec
     accumulator.forEach(onRenderFct => {
-      onRenderFct(deltaMsec / amt, nowMsec / amt)
+      onRenderFct(deltaMsec / newAm, nowMsec / newAm)
     })
   })
 }

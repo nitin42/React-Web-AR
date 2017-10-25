@@ -1,6 +1,6 @@
 import { ReactArToolKitMarkerController } from '../constructors/ar'
 
-let toolKitMarkerControlController = (parameters, renderer, arContext, root) => {
+let initialiseArToolKitMarkerControlController = (parameters, renderer, arContext, root) => {
   const { type, patternUrl, changeMatrixMode, barcodeValue } = parameters
 
   // Root will be configured in a different way.
@@ -16,4 +16,4 @@ let toolKitMarkerControlController = (parameters, renderer, arContext, root) => 
   return toolKitMarkerControl
 }
 
-export default toolKitMarkerControlController
+export default initialiseArToolKitMarkerControlController

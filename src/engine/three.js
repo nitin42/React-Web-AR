@@ -1,13 +1,13 @@
 import { initialiseGlRenderer, applyRendererProps, applyRendererStyles } from '../AR/webGlRenderer'
 import { initialiseCamera, initialiseScene } from '../AR/ThreeContext'
 
-// [CURRENT_STATUS] - appended out of React context
+// Not giving control to React (will change this behavior)
 const appendTheCanvas = (domElement) => {
   document.body.appendChild(domElement)
 }
 
 // Start the initialisation process (glRenderer, Scene, Camera)
-const start = (rendererRef, sceneRef, cameraRef, store, props) => {
+const initArToolKit = (rendererRef, sceneRef, cameraRef, props) => {
   // Create a gl renderer canvas
   rendererRef = initialiseGlRenderer(props)
 
@@ -18,21 +18,26 @@ const start = (rendererRef, sceneRef, cameraRef, store, props) => {
   applyRendererStyles(rendererRef, props.style)
 
   // Append the canvas to the DOM
-  // (ARToolKit does this implicitly and currently it is out of the React context because it is not rendered inside the 'root')
-  // (Suggestion to improve after beta - customise the build for three.js and add support for a root element to render to instead of relying on its implicit nature)
+  // (ARToolKit does this implicitly)
+  // TODO - Remove this and use custom threex.artoolkit build for the initial render
   appendTheCanvas(rendererRef.domElement)
 
   // Initialise a scene (will switch to component based API)
   sceneRef = initialiseScene()
 
-  // Initiliase a camera (will switch to component based API). Take help from ARToolKitContext.createDefaultCamera()
+  // Initiliase a camera (will switch to component based API).
+  // TODO - Take help from ARToolKitContext.createDefaultCamera()
   cameraRef = initialiseCamera()
 
   // Add the camera to the scene
   sceneRef.add(cameraRef)
 
-  // Updates the state (required for arController because local variables can still point to null)
-  store(rendererRef, sceneRef, cameraRef)
+  // Return the updated refs
+  return {
+    rendererRef,
+    sceneRef,
+    cameraRef,
+  }
 }
 
-export default start
+export default initArToolKit

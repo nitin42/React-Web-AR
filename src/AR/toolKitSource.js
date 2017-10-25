@@ -6,7 +6,7 @@
 import { ReactArToolKitSource } from '../constructors/ar'
 
 // Create ARSource instance with parameters
-let toolKitSourceController = parameters => {
+let initialiseArToolKitSourceController = parameters => {
   const { sourceType, sourceUrl, sourceWidth, sourceHeight, displayHeight, displayWidth } = parameters
 
   const toolKitSource = new ReactArToolKitSource({
@@ -21,7 +21,7 @@ let toolKitSourceController = parameters => {
   return toolKitSource
 }
 
-let startSourceWork = (arSource, renderer, arContext) => {
+let startArSourceWork = (arSource, renderer, arContext) => {
   // Initialise the ARSource work
   arSource.init(function onReady() {
     onResize();
@@ -46,6 +46,6 @@ let startSourceWork = (arSource, renderer, arContext) => {
 }
 
 export {
-  toolKitSourceController,
-  startSourceWork,
+  initialiseArToolKitSourceController,
+  startArSourceWork,
 }

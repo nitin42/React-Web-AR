@@ -1,6 +1,6 @@
 import { ReactArToolKitContext } from '../constructors/ar'
 
-let toolKitContextController = (parameters) => {
+let initialiseArToolKitContextController = (parameters) => {
   const {
     detectionMode,
     debug,
@@ -26,7 +26,7 @@ let toolKitContextController = (parameters) => {
   return toolKitContext
 }
 
-let startContextWork = (arContext, camera) => {
+let startArContextWork = (arContext, camera) => {
   // Render the 3D object on the 2D screen by 3D transformation using GL_Transformation matrix (too much math)
   arContext.init(function onCompleted() {
     camera.projectionMatrix.copy(arContext.getProjectionMatrix())
@@ -46,7 +46,7 @@ let applyUpdates = (arSource, arContext, scene, camera, accumulator) => {
 }
 
 export {
-  toolKitContextController,
-  startContextWork,
+  initialiseArToolKitContextController,
+  startArContextWork,
   applyUpdates
 }
