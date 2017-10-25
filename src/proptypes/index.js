@@ -59,7 +59,7 @@ const toolKitContextProps = () => {
     debug: false, // Enable debug for canvas in developing
     detectionMode: 'color_and_matrix', // Detection mode ['color', 'color_and_matrix', 'mono', 'mono_and_matrix']
     matrixCodeType: '3x3', // Matrix size, valid if detectionMode end with 'matrix' - [3x3, 3x3_HAMMING63, 3x3_PARITY65, 4x4, 4x4_BCH_13_9_3, 4x4_BCH_13_5_5]
-    cameraParametersUrl: 'parameters/camera_para.dat', // For source type camera
+    cameraParametersUrl: window.THREEx.ArToolkitContext.baseURL + '../data/data/camera_para.dat', // For source type camera
     maxDetectionRate: 60, // Tunning for maximum rate of pose detection in the source image
     canvasWidth: 640, // Canvas width
     canvasHeight: 480, // Canvas height
