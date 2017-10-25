@@ -1,10 +1,13 @@
 {
   "name": "react-ar",
-  "version": "1.0.0",
+  "version": "1.0.0-beta0",
   "description": "Augmented Reality with React",
-  "main": "index.js",
+  "main": "build/react-ar.min.js",
   "author": "Nitin Tulswani",
   "license": "MIT",
+  "files": [
+    "build"
+  ],
   "dependencies": {
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
