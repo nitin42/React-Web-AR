@@ -1,7 +1,7 @@
 import { initialiseGlRenderer, applyRendererProps, applyRendererStyles } from '../AR/webGlRenderer'
 import { initialiseCamera, initialiseScene } from '../AR/ThreeContext'
 
-// [CURRENT_STATUS] - appended out of React context
+// Not giving control to React (will change this behavior)
 const appendTheCanvas = (domElement) => {
   document.body.appendChild(domElement)
 }
