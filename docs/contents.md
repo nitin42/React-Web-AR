@@ -135,18 +135,18 @@ First, place these two files in your index.html (AR.js is packaged in an old man
 <script src="https://rawgit.com/jeromeetienne/ar.js/master/aframe/build/aframe-ar.js"></script>
 ```
 
-Second, install `react-ar`
+Second, install `React-AR`
 
 via npm
 
 ```
-npm install react-ar
+npm install react-web-ar
 ```
 
 or if you use yarn
 
 ```
-yarn add react-ar
+yarn add react-web-ar
 ```
 
 Lastly, install `three.js` to create and render 3D objects. Also, `ReactArToolKit` component relies on `three` internally so make sure you've installed it.
@@ -173,7 +173,7 @@ Assuming you've downloaded [this](../public/hiro_marker.png) image, place it in 
 import React, { Component } from 'react'
 import { render } from 'react-dom'
 
-import ReactArToolKit from 'react-ar'
+import ReactArToolKit from 'react-web-ar'
 
 const THREE = require('three')
 
