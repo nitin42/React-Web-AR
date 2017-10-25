@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 import { ReactArToolKitComponentDefaultProps, ReactArToolKitComponentPropTypes } from '../proptypes'
-import start from '../engine/three'
+import initArToolKit from '../engine/three'
 import arController from '../engine/arController'
 
 /**
@@ -32,15 +32,20 @@ export default class ReactArToolKit extends Component {
 	componentWillMount = () => {
 
 		// Initialise the ARToolKit (also ARController)
-    let { rendererRef, sceneRef, cameraRef } = start(this.renderer, this.scene, this.camera, this.props)
+    let { rendererRef, sceneRef, cameraRef } = initArToolKit(this.renderer, this.scene, this.camera, this.props)
 
-    // Updated refs (initialised)
+    // WebGL renderer intialised
     this.renderer = rendererRef;
+
+    // Scene initialised
     this.scene = sceneRef;
+
+    // Camera initialised
     this.camera = cameraRef;
   }
 
 	componentDidMount = () => {
+    
     // AR toolkit utils required to configure the main engine and start the rendering loop (returns the output to be flush)
 		const arToolKitUtils = {
 			context: this.toolKitContext,
@@ -55,7 +60,7 @@ export default class ReactArToolKit extends Component {
 		this.outputToFlush = arController(arToolKitUtils, this.props, this.byAmt)
 	}
 
-  // 'null' is render when the component mounts for the first time because we manually operate the dom and append the canvas
+  // For the first render, 'null' is render because we manually control the dom for rendering the canvas (will change this behaviour)
   // use the next render to enter the threex.artoolkit render loop to render the 3D objects
 	render() {
     // Enter the render loop
