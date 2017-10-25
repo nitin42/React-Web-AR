@@ -1,5 +1,5 @@
 {
-  "name": "react-ar",
+  "name": "react-web-ar",
   "version": "1.0.0-beta0",
   "description": "Augmented Reality with React",
   "main": "build/react-ar.min.js",
