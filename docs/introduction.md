@@ -12,11 +12,11 @@ Augmented Reality combines real world and digital data or you can say that it co
   <img src="./architecture.png">
 </p>
 
-The capturing module captures the image from the camera. The tracking module calculates the correct location and orientation for virtual overlay. The rendering module combines the original image and the virtual components using the calculated pose and then renders the augmented image on the display.
+The **capturing module** captures the **image** from the **camera**. The **tracking module** calculates the correct location and orientation for virtual overlay. The **rendering module** combines the original image and the **virtual components** using the calculated **pose** and then renders the **augmented image** on the display.
 
-The tracking module is the important and heart of the architecture. It calculates the relative pose of the camera in real time. The term pose means the six degrees of freedom position i.e 3D orientation and 3D location of an object. It also enables the system to add virtual components as part of the real scene.
+The tracking module is the important and heart of the architecture. It calculates the relative pose of the camera in real time. The term pose means the **six degrees of freedom position** i.e **3D orientation and 3D location of an object**. It also enables the system to add virtual components as part of the real scene.
 
-Now to calculate the pose, markers are used along with the projective geometry.
+Now to calculate the pose, markers are used along with the **projective geometry**.
 
 This project aims to bridge AR with React to create AR on the web with ease. It uses AR.js behind the scenes to describe the **AR context** and configure the **AR controller** which we will cover in more detail in [concepts](./concepts.md) section.
 
