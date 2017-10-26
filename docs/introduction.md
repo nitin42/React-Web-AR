@@ -9,7 +9,7 @@ Augmented Reality combines real world and digital data or you can say that it co
 ## Architecture
 
 <p align="center">
-  <img src="./ARARCH.png">
+  <img src="./architecture.png">
 </p>
 
 The capturing module captures the image from the camera. The tracking module calculates the correct location and orientation for virtual overlay. The rendering module combines the original image and the virtual components using the calculated pose and then renders the augmented image on the display.
