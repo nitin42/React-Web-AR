@@ -41,6 +41,8 @@ class ReactArApp extends Component {
 render(<ReactArApp />, document.getElementById('root'))
 ```
 
+Now move the `hiro` pattern marker on the webcam and enjoy!
+
 ## More examples
 
 * [Source type webcam](../examples/webcam.js)
