@@ -2,13 +2,15 @@
 🚀  Augmented Reality with React
 
 ## Demo
-[Demo](https://twitter.com/NTulswani/status/911284951181438976)
+[![Demo](https://i.gyazo.com/989ba9e0b69bfe889faed6a61a22aba2.png)](https://twitter.com/NTulswani/status/911284951181438976)
 
-[Delimiting rotation demo](https://twitter.com/NTulswani/status/915218481649377280)
+<hr/>
+
+[![Delimiting rotation demo](https://i.gyazo.com/796c71acdf7d2ede29c162bf9cb0929c.png)](https://twitter.com/NTulswani/status/915218481649377280)
 
 ## Documentation
 
-You can find the detailed documentation [here](./docs) on installation, usage and configuration.
+You can find the detailed documentation [here](./docs).
 
 ## Interested ?
 
