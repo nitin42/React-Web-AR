@@ -20,6 +20,8 @@ Now to calculate the pose, markers are used along with the **projective geometry
 
 This project aims to bridge AR with React to create AR on the web with ease. It uses AR.js behind the scenes to describe the **AR context** and configure the **AR controller** which we will cover in more detail in [concepts](./concepts.md) section.
 
+> If you're interested then you can read the document linked above about the theory of augmented reality.
+
 ## Why React?
 
 * Components 🔥
