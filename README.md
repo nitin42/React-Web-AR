@@ -10,7 +10,7 @@
 
 ## Documentation
 
-You can find the detailed documentation [here](./docs) on installation, usage and configuration.
+You can find the detailed documentation [here](./docs).
 
 ## Interested ?
 
