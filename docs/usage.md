@@ -52,3 +52,5 @@ Now move the `hiro` pattern marker on the webcam and enjoy!
 > Note - Don't try to import the image when the source type is an image because `sourceUrl` prop expects a relative url for an image
 
 * [Source type video](../examples/video.js)
+
+[Continue to API section](./api.md)
