@@ -108,3 +108,5 @@ delimiter(600)
 ```
 
 Try changing and passing the argument to delimiter function and you'll notice the change in animation.
+
+[Continue to implementation notes section](./implementation.md)
