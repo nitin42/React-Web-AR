@@ -8,6 +8,7 @@
 ```
 
 * Install `React-AR`
+> Not released yet
 
 ```
 npm install react-web-ar
