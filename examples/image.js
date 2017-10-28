@@ -33,6 +33,6 @@ class ArApp extends Component {
   }
 }
 
-render(<App />, document.getElementById('root'))
+render(<ArApp />, document.getElementById('root'))
 
 
