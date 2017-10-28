@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 
-import { ReactArToolKitComponentDefaultProps, ReactArToolKitComponentPropTypes } from '../proptypes'
-import initArToolKit from '../engine/three'
-import arController from '../engine/arController'
+import { ReactArToolKitComponentDefaultProps, ReactArToolKitComponentPropTypes } from '../props'
+import { initArToolKit } from '../ar-engine/initiator/Three'
+import { arController } from '../ar-engine/rendering-module/ARController'
+import { ReactArToolKitContext } from '../constructors/ReactARGlobals'
 
 export default class ReactArToolKit extends Component {
 	toolKitSource = null
@@ -14,8 +15,12 @@ export default class ReactArToolKit extends Component {
 	outputToFlush = null
 
 	state = {
-		// Store the functions to render
+		// Store the functions to render!
 		accumulator: [],
+		// Experimental lifecycle hook!
+		call: function() {
+			document.getElementById('root').style.width = '30px'
+		},
 	}
 
 	static propTypes = ReactArToolKitComponentPropTypes()
@@ -49,6 +54,8 @@ export default class ReactArToolKit extends Component {
 			scene: this.scene,
 			camera: this.camera,
 			accumulator: this.state.accumulator,
+			// Will batch hooks separately later
+			call: this.state.call,
 		}
 
 		// Main engine
@@ -58,8 +65,7 @@ export default class ReactArToolKit extends Component {
 	// Remove the rendering context, hence exit the render loop
 	componentWillUnmount = () => this.renderer.dispose()
 
-	setBaseUrl = () =>
-		(window.THREEx.ArToolkitContext.baseURL = 'https://rawgit.com/jeromeetienne/ar.js/master/three.js/')
+	setBaseUrl = () => (ReactArToolKitContext.baseURL = 'https://rawgit.com/jeromeetienne/ar.js/master/three.js/')
 
 	// For the first render, 'null' is rendered because we manually append the canvas to DOM
 	// and use the next render to enter the threex.artoolkit render loop to render the 3D objects onto the marker

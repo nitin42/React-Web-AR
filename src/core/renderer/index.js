@@ -1,4 +1,5 @@
-let flush = (scene, camera, renderer, state, props, byAmt) => {
+// Break this function into separate module and collect every piece of chunk in a flush function
+export const flush = (scene, camera, renderer, state, props, byAmt) => {
   const { accumulator } = state
   const { children } = props
 
@@ -9,7 +10,8 @@ let flush = (scene, camera, renderer, state, props, byAmt) => {
     // render the scene
     renderer.render(scene, camera)
   })
-
+  
+  // This is an experimental api for delimiter
   let newAm = 100
 
   const frameSec = (amt) =>  newAm = amt
@@ -30,5 +32,3 @@ let flush = (scene, camera, renderer, state, props, byAmt) => {
     })
   })
 }
-
-export default flush

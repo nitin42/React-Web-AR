@@ -1,3 +1,7 @@
 import ReactArToolKit from './components/ReactArToolKit'
+import AFrameRenderer from './components/AFrameRenderer'
 
-export default ReactArToolKit
+export {
+  ReactArToolKit,
+  AFrameRenderer,
+}
