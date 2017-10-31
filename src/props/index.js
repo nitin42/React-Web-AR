@@ -99,15 +99,8 @@ export const toolKitProps = () => {
       canvasWidth: PropTypes.number,
       canvasHeight: PropTypes.number
     }),
-    marker: PropTypes.shape({
-      type: PropTypes.string,
-      size: PropTypes.number,
-      patternUrl: PropTypes.string,
-      barcodeValue: PropTypes.number,
-      changeMatrixMode: PropTypes.string,
-      minConfidence: PropTypes.number,
-      preset: PropTypes.string
-    })
+    getSceneRef: PropTypes.func,
+    inherent: PropTypes.bool    
   }
 }
 
@@ -128,7 +121,24 @@ export const toolKitDefaultProps = () => {
       displayHeight: -1,
       canvasWidth: -1,
       canvasHeight: -1
-    }
+    },
+    getSceneRef: () => {},
+    inherent: true
+  }
+}
+
+export const markerPropTypes = () => {
+  return {
+    parameters: PropTypes.shape({
+      type: PropTypes.string,
+      size: PropTypes.number,
+      patternUrl: PropTypes.string,
+      url: PropTypes.string,
+      barcodeValue: PropTypes.number,
+      changeMatrixMode: PropTypes.string,
+      minConfidence: PropTypes.number,
+      preset: PropTypes.string
+    })
   }
 }
 

@@ -1,23 +1,23 @@
 # API Reference
 
-## Props
+## `ReactArToolKit` component props
 
 ### toolKitSource
 
-| Property      | Type           | Default  | Values |
+| Property      | Type           | Default  | Supported values / suggestions |
 | ------------- |:-------------:| :-----:| -------------:|
-| `sourceType` | `string` | 'webcam' | `['webcam', 'image', 'video']` |
-| `sourceUrl` | `string` | null (for webcam)| - |
-| `sourceHeight` | `number` | 480 | - |
-| `sourceWidth` | `number` | 640 | - |
-| `displayHeight` | `number` | 640 | - |
-| `displayWidth` | `number` | 640 | - |d
+| `sourceType` | `string` | `'webcam'` | `['webcam', 'image', 'video']` |
+| `sourceUrl` | `string` | null (for `'webcam'`)| A valid relative url for the source, can be an image or a video |
+| `sourceHeight` | `number` | `480` | A valid height |
+| `sourceWidth` | `number` | `640` | A valid width |
+| `displayHeight` | `number` | `640` | A valid display height |
+| `displayWidth` | `number` | `640` | A valid display width |
 
 > Note - `sourceUrl` is null for `sourceType` webcam and source dimensions are in **px**.
 
 ### toolKitContext
 
-| Property      | Type           | Default  | Values |
+| Property      | Type           | Default  | Supported values / suggestions|
 | ------------- |:-------------:| :-----:| -------------:|
 | `trackingBackend` | `string` | `'artoolkit'` | `['artoolkit', 'aruco', 'tango']` |
 | `debug` | `boolean` | `false` | - |
@@ -29,24 +29,25 @@
 | `canvasWidth` | `number` | `480` | - |
 | `imageSmoothingEnabled` | `boolean` | `true` | - |
 
+Read more about `imageSmoothingEnabled` [here](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/imageSmoothingEnabled).
 > Note - Canvas dimensions are in **px**.
 
 ### toolKitMarkerControl
 
-| Property      | Type           | Default  | Values |
+| Property      | Type           | Default  | Supported values / suggestions |
 | ------------- |:-------------:| -----:| -------------:|
 | `size` | `number` | `1` | - |
 | `type` | `string` | `'pattern'` | `['pattern', 'barcode', 'unknown' ]` |
-| `patternUrl` | `string` | `'patt.hiro'` | - |
-| `barcodeValue` | `number` | `null` (initialise a bar code value when the type is barcode) |
+| `patternUrl` | `string` | `'patt.hiro'` | A valid pattern name, kanji or hiro |
+| `barcodeValue` | `number` | `null` (initialise a bar code value when the type is `barcode`) | - |
 | `changeMatrixMode` | `string` | `cameraTransformMatrix` | - |
-| `minConfidence` | `number` | `1` | - |
+| `minConfidence` | `number` | `0.6` | - |
 
 ### Render prop pattern
 
 You can see that we render the 3D objects using the render prop pattern. In render prop pattern, we have a scene, a camera, an accumulator to store the functions to be rendered and a delimiter function which accepts seconds.
 
-You can create 3D objects using `three.js` and add them to the scene (using `scene.add(object)`).
+You can create 3D objects using `three.js` and add them to the scene.
 
 You can also add a function to render which accepts an argument (`seconds`) to animate the object.
 
@@ -64,8 +65,6 @@ The three main phases of AR.js core are:
 
 Using this pattern, we give total control to the user to create 3D object and update the render loop (add functions to render).
 
-Its not that I like this pattern or think its more convenient, I feel its judicious way to use AR on the web.
-
 Although everything can be wrapped inside an another component or using `three.js` bindings but it would increase the complexity to track the accumulator state and it will also distort the way we control the render loop in AR.js. Plus, its difficult to bridge the `three.js` bindings for React with AR.js. Its doable but I don't consider this option because it comes at a cost, maintainability and also 👇
 
 ## Ok, render prop pattern, fine! But its React and I want everything to be a component.
@@ -74,7 +73,7 @@ Think if React didn't existed before and you were trying to use AR on the web. A
 
 ## Using the render prop pattern
 
-It provides four argumnets to manage the creation and rendering of 3D objects, `scene`, an `accumulator`, `camera` and `delimiter`.
+It provides four arguments to manage the creation and rendering of 3D objects, `scene`, an `accumulator`, `camera` and `delimiter`.
 
 You can create an object using `three.js` and then add it to the scene.
 
@@ -108,5 +107,135 @@ delimiter(600)
 ```
 
 Try changing and passing the argument to delimiter function and you'll notice the change in animation.
+
+## `AFrameRenderer` component props
+
+### arToolKit
+
+| Property      | Type           | Default  | Supported values |
+| ------------- |:-------------:| :-----:| -------------:|
+| `sourceType` | `string` | `'webcam'` | `['webcam', 'image', 'video']` |
+| `sourceUrl` | `string` | null (for `'webcam'`)| ''|
+| `sourceHeight` | `number` | `-1` | - |
+| `sourceWidth` | `number` | `-1` | - |
+| `displayHeight` | `number` | `-1` | - |
+| `displayWidth` | `number` | `-1` | - |
+| `debugUIEnabled` | `boolean` | `false` | - |
+| `detectionMode` | `string` | '' | `['color', 'color_and_matrix', 'mono', 'mono_and_matrix']` |
+| `matrixCodeType` | `string` | '' | `[3x3, 3x3_HAMMING63, 3x3_PARITY65, 4x4, 4x4_BCH_13_9_3, 4x4_BCH_13_5_5]` |
+| `cameraParametersUrl` | `string` | '' | `window.THREEx.ArToolkitContext.baseURL + '../data/data/camera_para.dat'` |
+| `maxDetectionRate` | `number` | `-1` | - |
+| `canvasHeight` | `number` | `-1` | - |
+| `canvasWidth` | `number` | `-1` | - |
+
+### marker
+
+| Property      | Type           | Default  | Supported values |
+| ------------- |:-------------:| -----:| -------------:|
+| `size` | `number` | `1` | - |
+| `type` | `string` | `'pattern'` | `['pattern', 'barcode', 'unknown' ]` |
+| `patternUrl` | `string` | `'patt.hiro'` | - |
+| `barcodeValue` | `number` | `null` (initialise a bar code value when the type is `barcode`) | - |
+| `minConfidence` | `number` | `0.6` | - |
+| `preset` | `string` | `'hiro'` | ['hiro', 'kanji', 'custom']
+
+### getSceneRef
+
+`getSceneRef` accepts a function with an argument and returns a reference to `<a-scene>` primitive. This reference can be used to switch the mode to either `stereo` or `mono` or in other words `enterVR()` and `exitVR()`. It can also be used with the events associated with `<a-scene>`.
+
+For example -
+
+```js
+class ArApp extends React.Component {
+  componentWillUnmount() {
+    this.scene.exitVR()
+  }
+
+  render() {
+    return (
+      <AFrameRenderer getSceneRef={(ref) => this.scene = ref}
+        {this.props.children}
+      </AFrameRenderer>
+    )
+  }  
+}
+
+```
+
+Learn more about the events and methods supported by `<a-scene>` [here](https://aframe.io/docs/0.7.0/core/scene.html#methods).
+
+### Supported properties for `<a-scene>`
+
+You can add the same properties to `AFrameRenderer` that you used to add to `<a-scene>` primitive in aframe.io. Also, it means that you can register a custom component using `AFRAME` global and then pass it to `AFrameRenderer` component.
+
+For example -
+
+You register a component in aframe.io in this manner,
+
+```js
+
+AFRAME.registerComponent('hello-world', {
+  init: function () {
+    console.log('Hello, World!');
+  }
+});
+
+// Then use it like this
+<a-scene hello-world></a-scene>
+```
+
+Same is applicable for `AFrameRenderer` component. Register the component in similar way and then pass it as a prop.
+
+```js
+<AFrameRenderer hello-world />
+```
+
+Below is an example that shows how you can use everything (every prop) in `AFrameRenderer` component.
+
+```js
+import React, { Component } from 'react'
+import { render } from 'react-dom'
+
+import { AFrameRenderer } from 'react-web-ar'
+
+const THREE = require('three')
+
+class ReactArApp extends Component {
+  componentWillUnmount() {
+    this.scene.exitVR()
+  }
+
+  render() {
+    return (
+      // Render your aframe primitives inside this top level component
+      <AFrameRenderer
+        arToolKit={{ sourceType: 'image', sourceUrl: './hiro_marker.png' }}
+        // Try changing the marker here to 'kanji' and notice the behavior with your image or video or webcam
+        marker={{ preset: 'hiro' }}
+        // Supported property in <a-scene>
+        stats
+        getSceneRef={(ref) => this.scene = ref}
+      >
+        <a-box
+          color="red"
+          position="0 0.3 0"
+          rotation="0 45 45"
+          scale="0.18 0.18 0.18"
+        >
+          <a-animation
+            attribute="position"
+            to="0 0.8 0"
+            direction="alternate"
+            dur="800"
+            repeat="indefinite"
+          />
+        </a-box>
+      </AFrameRenderer>
+    )
+  }
+}
+
+render(<ReactArApp />, document.getElementById('root'))
+```
 
 [Continue to implementation notes section](./implementation.md)

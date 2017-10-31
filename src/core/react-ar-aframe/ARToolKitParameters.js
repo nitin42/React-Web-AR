@@ -1,3 +1,4 @@
+// ARToolKit parameters for the arjs component that is registered into AFrame context
 export const setARToolKitParameters = parameters => `
   debugUIEnabled: ${parameters.debugUIEnabled || false};
   detectionMode: ${parameters.detectionMode || ''};
