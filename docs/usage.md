@@ -1,10 +1,12 @@
 # Usage
 
-You can use `React-AR` with [three.js](https://threejs.org) or also with [aframe.io](aframe.io) primitives.
+You can use `React-AR` with [three.js](https://threejs.org) or also with [aframe.io](aframe.io) primitives (WebVR).
 
 ## Three.js
 
 Below is an example which shows the `React-AR` usage with `three.js`
+
+> Note - This API (render prop) is experimental and will be changed to components.
 
 ```jsx
 import React, { Component } from 'react'
@@ -59,32 +61,22 @@ Below is an example which shows the `React-AR` usage with [aframe.io](aframe.io)
 import React, { Component } from 'react'
 import { render } from 'react-dom'
 
-import { AFrameRenderer } from 'react-web-ar'
+import { AFrameRenderer, Marker } from 'react-web-ar'
 
 const THREE = require('three')
 
 class ReactArApp extends Component {
   render() {
     return (
-      // Render your aframe primitives inside this top level component
       <AFrameRenderer
-        arToolKit={{ sourceType: 'webcam' }}
-        marker={{ preset: 'hiro' }}
+        arToolKit={{ sourceType: 'image', sourceUrl: './images/hiro_marker.png'}}
+        stats
       >
-        <a-box
-          color="red"
-          position="0 0.3 0"
-          rotation="0 45 45"
-          scale="0.18 0.18 0.18"
-        >
-          <a-animation
-            attribute="position"
-            to="0 0.8 0"
-            direction="alternate"
-            dur="800"
-            repeat="indefinite"
-          />
-        </a-box>
+        <Marker parameters={{ preset: 'hiro' }}>
+          <a-box color='pink' material='opacity: 1;' position="0 0.003 0" scale='0.4 0.4 0.4'>
+            <a-animation attribute="rotation" to="360 0 0" dur="5000" easing="linear" repeat="indefinite" />
+          </a-box>
+        </Marker>
       </AFrameRenderer>
     )
   }
@@ -100,13 +92,11 @@ Now move the `hiro` pattern marker on the webcam, or if you have an image of `hi
 
 Try changing the prop `sourceType` and `sourceUrl` and notice the behavior when it renders the object.
 
-> Note - Don't try to import the image when the source type is an image because `sourceUrl` prop expects a relative url for an image. For example - { sourceType: 'image', sourceUrl: './some_relative_path_.png'}. Also, make sure that the image is in the folder that you're serving via a dev server.
+> Note - Don't try to import the image when the source type is an image because `sourceUrl` prop expects a relative url for an image. For example - `{ sourceType: 'image', sourceUrl: './some_relative_path_.png'}`. Also, make sure that the image is in the folder that you're serving via a dev server.
 
 ## Creating a custom marker
 
-You can also create and use your own marker along with `hiro` and `kanji`.
-
-Follow the below steps to create your own marker:
+You can also create and use your own marker. Follow the below steps to create your own marker:
 
 * Go to [this](https://jeromeetienne.github.io/AR.js/three.js/examples/marker-training/examples/generator.html) link. Its a simple web app to create and download the custom marker pattern.
 
@@ -116,12 +106,12 @@ Follow the below steps to create your own marker:
 
 * Save that image
 
-Now after you've the image and its corresponding pattern file, simply provide a path to the `pattern`.
+Now after you've the image and its corresponding pattern file, simply provide a path to the `pattern` and also a path to that image.
 
-> If your marker doesn't work, you can read to [this thread](https://github.com/jeromeetienne/AR.js/issues/164#issuecomment-332065686) about editing the image and regenerating the pattern file.
+> Read [this thread](https://github.com/jeromeetienne/AR.js/issues/164#issuecomment-332065686) about editing the image and regenerating the pattern file if your marker doesn't work.
 
 ## More examples
 
-You can all the different examples [here](../examples).
+You can find all the different examples [here](../examples).
 
 [Continue to API section](./api.md)

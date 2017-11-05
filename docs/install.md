@@ -1,6 +1,6 @@
 # Install
 
-* Place these two files in your `index.html` ( AR.js is packaged in an old manner).
+* Place these two files in your `index.html`
 
 ```html
 <script src="https://aframe.io/releases/0.7.0/aframe.min.js"></script>

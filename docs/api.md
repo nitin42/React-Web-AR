@@ -1,5 +1,7 @@
 # API Reference
 
+**API for `ReactArToolKit` component is experimental**
+
 ## `ReactArToolKit` component props
 
 ### toolKitSource
@@ -65,13 +67,7 @@ The three main phases of AR.js core are:
 
 Using this pattern, we give total control to the user to create 3D object and update the render loop (add functions to render).
 
-Although everything can be wrapped inside an another component or using `three.js` bindings but it would increase the complexity to track the accumulator state and it will also distort the way we control the render loop in AR.js. Plus, its difficult to bridge the `three.js` bindings for React with AR.js. Its doable but I don't consider this option because it comes at a cost, maintainability and also 👇
-
-## Ok, render prop pattern, fine! But its React and I want everything to be a component.
-
-Think if React didn't existed before and you were trying to use AR on the web. At that time, you only had one option, DO EVERYTHING IN AN IMPERATIVE WAY! But now that we use React to render almost anything on web, native, pdf, word why not wrap the main engine of AR inside a component using React. With React, we not only reduced the cognitive load to understand the working of AR, its lifecycle, rendering loop and its capabilities but we also preserved the actual way of using `three.js` with `AR.js`. This is a big win for us!
-
-## Using the render prop pattern
+## Using the render prop pattern (Experimental API)
 
 It provides four arguments to manage the creation and rendering of 3D objects, `scene`, an `accumulator`, `camera` and `delimiter`.
 
@@ -128,17 +124,6 @@ Try changing and passing the argument to delimiter function and you'll notice th
 | `canvasHeight` | `number` | `-1` | - |
 | `canvasWidth` | `number` | `-1` | - |
 
-### marker
-
-| Property      | Type           | Default  | Supported values |
-| ------------- |:-------------:| -----:| -------------:|
-| `size` | `number` | `1` | - |
-| `type` | `string` | `'pattern'` | `['pattern', 'barcode', 'unknown' ]` |
-| `patternUrl` | `string` | `'patt.hiro'` | - |
-| `barcodeValue` | `number` | `null` (initialise a bar code value when the type is `barcode`) | - |
-| `minConfidence` | `number` | `0.6` | - |
-| `preset` | `string` | `'hiro'` | ['hiro', 'kanji', 'custom']
-
 ### getSceneRef
 
 `getSceneRef` accepts a function with an argument and returns a reference to `<a-scene>` primitive. This reference can be used to switch the mode to either `stereo` or `mono` or in other words `enterVR()` and `exitVR()`. It can also be used with the events associated with `<a-scene>`.
@@ -164,6 +149,18 @@ class ArApp extends React.Component {
 
 Learn more about the events and methods supported by `<a-scene>` [here](https://aframe.io/docs/0.7.0/core/scene.html#methods).
 
+## inherent
+
+**`type`** - `boolean`\
+**`default`** - `true`
+
+**What is the use of inherent prop?**
+
+Uses a basic marker component (\<a-marker /\>) and a camera component which is static at (0, 0, 0) and uses **`modelViewMatrix`** ([matrix transformation]()). 
+**`modelViewMatrix`** determines what user sees on the camera. 
+
+I recommend reading a little more about `modelViewMatrix`. You can find an easy and detailed description about it(not too much math) [here]().
+
 ### Supported properties for `<a-scene>`
 
 You can add the same properties to `AFrameRenderer` that you used to add to `<a-scene>` primitive in aframe.io. Also, it means that you can register a custom component using `AFRAME` global and then pass it to `AFrameRenderer` component.
@@ -180,7 +177,6 @@ AFRAME.registerComponent('hello-world', {
   }
 });
 
-// Then use it like this
 <a-scene hello-world></a-scene>
 ```
 
@@ -196,40 +192,24 @@ Below is an example that shows how you can use everything (every prop) in `AFram
 import React, { Component } from 'react'
 import { render } from 'react-dom'
 
-import { AFrameRenderer } from 'react-web-ar'
+import { AFrameRenderer, Marker } from 'react-web-ar'
 
 const THREE = require('three')
 
 class ReactArApp extends Component {
-  componentWillUnmount() {
-    this.scene.exitVR()
-  }
-
   render() {
     return (
-      // Render your aframe primitives inside this top level component
       <AFrameRenderer
-        arToolKit={{ sourceType: 'image', sourceUrl: './hiro_marker.png' }}
-        // Try changing the marker here to 'kanji' and notice the behavior with your image or video or webcam
-        marker={{ preset: 'hiro' }}
-        // Supported property in <a-scene>
+        arToolKit={{ sourceType: 'image', sourceUrl: './images/hiro_marker.png'}}
         stats
-        getSceneRef={(ref) => this.scene = ref}
+        getSceneRef={ref => (this.scene = ref)} // 
+        inherent={true}
       >
-        <a-box
-          color="red"
-          position="0 0.3 0"
-          rotation="0 45 45"
-          scale="0.18 0.18 0.18"
-        >
-          <a-animation
-            attribute="position"
-            to="0 0.8 0"
-            direction="alternate"
-            dur="800"
-            repeat="indefinite"
-          />
-        </a-box>
+        <Marker parameters={{ preset: 'hiro' }}>
+          <a-box color='pink' material='opacity: 1;' position="0 0.003 0" scale='0.4 0.4 0.4'>
+            <a-animation attribute="rotation" to="360 0 0" dur="5000" easing="linear" repeat="indefinite" />
+          </a-box>
+        </Marker>
       </AFrameRenderer>
     )
   }
@@ -237,5 +217,17 @@ class ReactArApp extends Component {
 
 render(<ReactArApp />, document.getElementById('root'))
 ```
+
+### marker
+
+| Property      | Type           | Default  | Supported values |
+| ------------- |:-------------:| -----:| -------------:|
+| `size` | `number` | `1` | - |
+| `type` | `string` | `'pattern'` | `['pattern', 'barcode', 'unknown' ]` |
+| `patternUrl` | `string` | `'patt.hiro'` | - |
+| `barcodeValue` | `number` | `null` (initialise a bar code value when the type is `barcode`) | - |
+| `minConfidence` | `number` | `0.6` | - |
+| `preset` | `string` | `'hiro'` | ['hiro', 'kanji', 'custom']
+
 
 [Continue to implementation notes section](./implementation.md)
