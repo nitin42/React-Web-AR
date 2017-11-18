@@ -2,8 +2,21 @@ import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 
-import { setARToolKitParameters } from '../../core/react-ar-aframe/ARToolKitParameters'
-import { toolKitProps, toolKitDefaultProps } from '../../props'
+const PARAMETERS = [
+	'debugUIEnabled',
+	'detectionMode',
+	'matrixCodeType',
+	'cameraParametersUrl',
+	'maxDetectionRate',
+	'sourceType',
+	'sourceUrl',
+	'sourceWidth',
+	'sourceHeight',
+	'displayHeight',
+	'displayWidth',
+	'canvasWidth',
+	'canvasHeight',
+]
 
 /**
  * AFrameRenderer
@@ -19,33 +32,54 @@ import { toolKitProps, toolKitDefaultProps } from '../../props'
  * AR.js gives this error 'THREEx.ArMarkerControls: 'markersAreaEnabled' is not a property of this material.'
  * 
  */
-
-// const info = msg => console.info(msg)
-
 export default class AFrameRenderer extends Component {
 	container = document.body
 	renderer = null
 
-	static propTypes = toolKitProps()
+	static propTypes = {
+		arToolKit: PropTypes.shape({
+			sourceType: PropTypes.string,
+			sourceUrl: PropTypes.string,
+			debugUIEnabled: PropTypes.bool,
+			detectionMode: PropTypes.string,
+			matrixCodeType: PropTypes.string,
+			cameraParametersUrl: PropTypes.string,
+			maxDetectionRate: PropTypes.number,
+			sourceWidth: PropTypes.number,
+			sourceHeight: PropTypes.number,
+			displayWidth: PropTypes.number,
+			displayHeight: PropTypes.number,
+			canvasWidth: PropTypes.number,
+			canvasHeight: PropTypes.number,
+		}),
+		getSceneRef: PropTypes.func,
+		inherent: PropTypes.bool,
+	}
+
+	static defaultProps = {
+		arToolKit: {},
+		getSceneRef: () => {}, // No ref
+		inherent: true, // use modelViewMatrix
+	}
 
 	static childContextTypes = {
 		inherent: PropTypes.bool,
-  }
-  
-  // This prop is used by the <Marker /> component to decide whether to use modelViewMatrix or cameraTransformMatrix
+	}
+
+	// This prop is used by the <Marker /> component to decide whether to use modelViewMatrix or cameraTransformMatrix
 	getChildContext() {
 		return {
 			inherent: this.props.inherent,
 		}
-  }
-  
-  // Clear the rendering context
-  // Fallback if <a-scene /> primitive fails to dispose the renderer
+	}
+
+	// Clear the rendering context
+	// Fallback if <a-scene /> primitive fails to dispose the renderer
 	componentWillUnmount = () => {
 		this.renderer && this.renderer.dispose()
 	}
 
-	// Pass <a-scene /> reference as a prop
+	// Pass <a-scene /> reference as a prop. Useful for usage with aframe.io APIs
 	passSceneRef = (getSceneRef, ref) => getSceneRef(ref) || ref
 
 	// We need to render the <a-scene> outside the parent container
@@ -63,31 +97,21 @@ export default class AFrameRenderer extends Component {
 	inherentMode = value => (value ? <a-camera-static /> : null)
 
 	// arjs toolkit parameters (these mappings are already validated in arjs)
-	prepareToolKitParams = parameters =>
-		`
-    debugUIEnabled: ${parameters.debugUIEnabled || false};
-    detectionMode: ${parameters.detectionMode || ''};
-    matrixCodeType: ${parameters.matrixCodeType || ''};
-    cameraParametersUrl: ${parameters.cameraParametersUrl || ''};
-    maxDetectionRate: ${parameters.maxDetectionRate || -1};
-    sourceType: ${parameters.sourceType || 'webcam'};
-    sourceUrl: ${parameters.sourceUrl || null};
-    sourceWidth: ${parameters.sourceWidth || -1};
-    sourceHeight: ${parameters.sourceHeight || -1};
-    displayHeight: ${parameters.displayHeight || -1};
-    displayWidth: ${parameters.displayWidth || -1};
-    canvasHeight: ${parameters.canvasHeight || -1};
-    canvasWidth: ${parameters.canvasWidth || -1};
-  `
+	prepareToolKitParams = parameters => {
+		let toolKitParams = ''
+
+		Object.keys(parameters).forEach(param => {
+			if (PARAMETERS.includes(param)) {
+				toolKitParams += `${param}: ${parameters[param]};`
+			}
+		})
+
+		return toolKitParams
+	}
 
 	// Flush the output
 	flush = props => {
 		const { arToolKit, children, getSceneRef, inherent, ...rest } = props
-
-		// info(
-		// 	'%cThe image source is appended outside the parent container (i.e, root container) because arjs adds the image (sourceType) outside the parent container and the tracking module cannot track the position of the marker lying outside its context.',
-		// 	'color: blue; font-size: 13px'
-		// )
 
 		return this.renderVirtualComponent(
 			<a-scene
@@ -108,7 +132,7 @@ export default class AFrameRenderer extends Component {
 	}
 
 	render() {
-    // Renderless! (we currently use portals to render in body and not in parent container)
+		// Renderless! (we currently use portals to render in body and not in parent container)
 		return this.flush(this.props)
 	}
 }

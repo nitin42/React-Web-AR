@@ -1,14 +1,24 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import { markerPropTypes } from '../../props'
-
 // Renders an object under a marker with a preset or a patternUrl
 export default class Marker extends Component {
-	static propTypes = markerPropTypes()
+	static propTypes = {
+    parameters: PropTypes.shape({
+      type: PropTypes.string,
+      size: PropTypes.number,
+      patternUrl: PropTypes.string,
+      url: PropTypes.string,
+      barcodeValue: PropTypes.number,
+      changeMatrixMode: PropTypes.string,
+      minConfidence: PropTypes.number,
+      preset: PropTypes.string,
+      markerhelpers: PropTypes.bool
+    })
+  }
 
 	static defaultProps = {
-		// Use AR.js defaults (arjs component already has a mapping to default parameters), 
+		// arjs component already has a mapping to default parameters,
 		parameters: {}
 	}
 
