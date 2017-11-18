@@ -1,38 +1,34 @@
-import React, { Component } from 'react'
-import { render } from 'react-dom'
+import React, { Component } from "react";
+import { render } from "react-dom";
 
-import ReactArToolKit from '../src'
+import { AFrameRenderer, ReactArToolKit } from "../src";
 
-const THREE = require('three')
+const THREE = require("three");
 
-class ArApp extends Component {
+class ReactArApp extends Component {
   render() {
     return (
-      <ReactArToolKit>
-        {(scene, accumulator, camera, delimiter) => {
-          // Create 3D object
-          let geometry = new THREE.TorusKnotGeometry(0.3, 0.1, 64, 16)
-          let material = new THREE.MeshNormalMaterial()
-          let mesh = new THREE.Mesh(geometry, material)
-          
-          mesh.position.y = 0.5
-
-          // Add it to scene
-          scene.add(mesh)
-
-          // Append function to render
-          accumulator.push(function(delta) {
-            mesh.rotation.x += Math.PI * delta
-          })
-
-          // Frame per sec (used in controlling animation rate) 
-          delimiter(500)
-        }}
-      </ReactArToolKit>
-    )
+      <AFrameRenderer
+        arToolKit={{ sourceType: "webcam" }}
+        marker={{ preset: "hiro" }}
+      >
+        <a-box
+          color="red"
+          position="0 0.3 0"
+          rotation="0 45 45"
+          scale="0.18 0.18 0.18"
+        >
+          <a-animation
+            attribute="position"
+            to="0 0.8 0"
+            direction="alternate"
+            dur="800"
+            repeat="indefinite"
+          />
+        </a-box>
+      </AFrameRenderer>
+    );
   }
 }
 
-render(<App />, document.getElementById('root'))
-
-
+render(<ReactArApp />, document.getElementById("root"));
