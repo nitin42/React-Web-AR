@@ -12,6 +12,13 @@ This is the documentation for `React-AR`.
 * [API Reference](./api.md)
 * [Implementation notes](./implementation.md)
 
+## Applications of augmented reality
+
+* Interior designing
+* Outdoor visualisation systems (they use video as source type)
+* Interaction with the materials (for reading the assembly instructions)
+* Games
+
 ## Resources
 
 * [AR.js documentation](https://github.com/jeromeetienne/AR.js/blob/master/README.md)
