@@ -33,14 +33,6 @@ const toolKitMarkerControlTypes = () =>
     minConfidence: PropTypes.number
   })
 
-const ReactArToolKitComponentPropTypes = () => {
-  return {
-    toolKitSource: toolKitSourceTypes(),
-    toolKitContext: toolKitContextTypes(),
-    toolKitMarkerControl: toolKitMarkerControlTypes()
-  }
-}
-
 // AR.js resets the input parameters when the source type changes (to undefined)
 
 const toolKitSourceProps = () => {
@@ -82,67 +74,23 @@ const toolKitMarkerControlProps = () => {
   }
 }
 
-export const toolKitProps = () => {
-  return {
-    arToolKit: PropTypes.shape({
-      sourceType: PropTypes.string,
-      sourceUrl: PropTypes.string,
-      debugUIEnabled: PropTypes.bool,
-      detectionMode: PropTypes.string,
-      matrixCodeType: PropTypes.string,
-      cameraParametersUrl: PropTypes.string,
-      maxDetectionRate: PropTypes.number,
-      sourceWidth: PropTypes.number,
-      sourceHeight: PropTypes.number,
-      displayWidth: PropTypes.number,
-      displayHeight: PropTypes.number,
-      canvasWidth: PropTypes.number,
-      canvasHeight: PropTypes.number
-    }),
-    getSceneRef: PropTypes.func,
-    inherent: PropTypes.bool    
-  }
-}
+// export const markerPropTypes = () => {
+//   return {
+//     parameters: PropTypes.shape({
+//       type: PropTypes.string,
+//       size: PropTypes.number,
+//       patternUrl: PropTypes.string,
+//       url: PropTypes.string,
+//       barcodeValue: PropTypes.number,
+//       changeMatrixMode: PropTypes.string,
+//       minConfidence: PropTypes.number,
+//       preset: PropTypes.string,
+//       markerhelpers: PropTypes.bool
+//     })
+//   }
+// }
 
-export const toolKitDefaultProps = () => {
-  // We need to keep this because we interpolate all these parameters into a string and add it to the primitive
-  return {
-    arToolKit: {
-      sourceType: 'webcam',
-      sourceUrl: null,
-      debugUIEnabled: false,
-      detectionMode: '',
-      matrixCodeType: '',
-      cameraParametersUrl: '',
-      maxDetectionRate: -1,
-      sourceWidth: -1,
-      sourceHeight: -1,
-      displayWidth: -1,
-      displayHeight: -1,
-      canvasWidth: -1,
-      canvasHeight: -1
-    },
-    getSceneRef: () => {},
-    inherent: true
-  }
-}
-
-export const markerPropTypes = () => {
-  return {
-    parameters: PropTypes.shape({
-      type: PropTypes.string,
-      size: PropTypes.number,
-      patternUrl: PropTypes.string,
-      url: PropTypes.string,
-      barcodeValue: PropTypes.number,
-      changeMatrixMode: PropTypes.string,
-      minConfidence: PropTypes.number,
-      preset: PropTypes.string
-    })
-  }
-}
-
-const ReactArToolKitComponentDefaultProps = () => {
+export const ReactArToolKitComponentDefaultProps = () => {
   return {
     toolKitSource: toolKitSourceProps(),
     toolKitContext: toolKitContextProps(),
@@ -154,4 +102,10 @@ const ReactArToolKitComponentDefaultProps = () => {
   }
 }
 
-export { ReactArToolKitComponentPropTypes, ReactArToolKitComponentDefaultProps }
+export const ReactArToolKitComponentPropTypes = () => {
+  return {
+    toolKitSource: toolKitSourceTypes(),
+    toolKitContext: toolKitContextTypes(),
+    toolKitMarkerControl: toolKitMarkerControlTypes()
+  }
+}
