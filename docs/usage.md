@@ -1,58 +1,5 @@
 # Usage
 
-You can use `React-AR` with [three.js](https://threejs.org) or also with [aframe.io](aframe.io) primitives (WebVR).
-
-## Three.js
-
-Below is an example which shows the `React-AR` usage with `three.js`
-
-> Note - This API (render prop) is experimental and will be changed to components.
-
-```jsx
-import React, { Component } from 'react'
-import { render } from 'react-dom'
-
-import { ReactArToolKit } from 'react-web-ar'
-
-const THREE = require('three')
-
-class ReactArApp extends Component {
-  render3D(scene, accumulator, delimiter) {
-    // Create 3D object
-    let geometry = new THREE.TorusKnotGeometry(0.3, 0.1, 64, 16)
-    let material = new THREE.MeshNormalMaterial()
-    let mesh = new THREE.Mesh(geometry, material)
-
-    mesh.position.y = 0.5
-
-    // Add it to scene
-    scene.add(mesh)
-
-    // Append function to render
-    accumulator.push(function(delta) {
-      mesh.rotation.x += Math.PI * delta
-    })
-
-    // Frame per sec (used in controlling animation rate)
-    delimiter(500)    
-  }
-
-  render() {
-    return (
-      <ReactArToolKit toolKitSource={{ sourceType: 'webcam' }}>
-        {(scene, accumulator, camera, delimiter) => {
-          this.render3D(scene, accumulator, delimiter)
-        }}
-      </ReactArToolKit>
-    )
-  }
-}
-
-render(<ReactArApp />, document.getElementById('root'))
-```
-
-[Complete API reference for usage with three.js]()
-
 ## aframe.io
 
 Below is an example which shows the `React-AR` usage with [aframe.io](aframe.io) primitives.
@@ -62,8 +9,6 @@ import React, { Component } from 'react'
 import { render } from 'react-dom'
 
 import { AFrameRenderer, Marker } from 'react-web-ar'
-
-const THREE = require('three')
 
 class ReactArApp extends Component {
   render() {
@@ -86,11 +31,13 @@ render(<ReactArApp />, document.getElementById('root'))
 
 ```
 
-[Complete API reference for usage with aframe.io]()
-
 Now move the `hiro` pattern marker on the webcam, or if you have an image of `hiro` marker or a video. For samples, you can download the assets from [public]() folder in this repo.
 
 Try changing the prop `sourceType` and `sourceUrl` and notice the behavior when it renders the object.
+
+<p align="center">
+  <img src="http://g.recordit.co/tfCSRb4M6W.gif">
+</p>
 
 > Note - Don't try to import the image when the source type is an image because `sourceUrl` prop expects a relative url for an image. For example - `{ sourceType: 'image', sourceUrl: './some_relative_path_.png'}`. Also, make sure that the image is in the folder that you're serving via a dev server.
 
