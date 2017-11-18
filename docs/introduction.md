@@ -24,9 +24,9 @@ This project aims to bridge AR with React to create AR on the web. It uses AR.js
 
 ## Why React?
 
-* Components makes it easy to reason about a scene 🔥
-* Clean and minimal API
-* Declaratively controlling the render loop
+* Components makes it easy to reason about a scene.
+* Clean and minimal API.
+* Declaratively controlling the render loop (for threejs renderer).
 * Easy to create AR content that can be used and integrated in a React app.
 
 [Continue to concepts section](./concepts.md)

@@ -35,7 +35,7 @@ Now move the `hiro` pattern marker on the webcam, or if you have an image of `hi
 
 Try changing the prop `sourceType` and `sourceUrl` and notice the behavior when it renders the object.
 
-<img src="../demo.gif">
+<img src="https://i.gyazo.com/8a1100c650c291b926ca6ba3de6e5673.gif">
 
 > Note - Don't try to import the image when the source type is an image because `sourceUrl` prop expects a relative url for an image. For example - `{ sourceType: 'image', sourceUrl: './some_relative_path_.png'}`. Also, make sure that the image is in the folder that you're serving via a dev server.
 

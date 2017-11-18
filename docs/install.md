@@ -16,12 +16,6 @@ The first script is required to use [aframe](aframe.io) primitives with `AR.js` 
 npm install react-web-ar
 ```
 
-This is the main package that contains the components to render AR on web using [three.js](https://threejs.org) or [aframe.io](aframe.io) primitives.
-
-* Install `three.js` to create and render 3D objects. Also, `ReactArToolKit` component relies on `three.js` internally so make sure you've installed it.
-
-```
-npm install three
-```
+This is the main package that contains the components to render AR on web.
 
 [Continue to usage section](./usage.md)
