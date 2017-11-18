@@ -5,9 +5,7 @@
   "main": "build/react-ar.min.js",
   "author": "Nitin Tulswani",
   "license": "MIT",
-  "files": [
-    "build"
-  ],
+  "files": ["build"],
   "dependencies": {
     "aframe": "^0.7.1",
     "aframe-particle-system-component": "^1.0.10",
@@ -20,13 +18,21 @@
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-preset-react-app": "^3.0.3",
+    "husky": "^0.14.3",
+    "lint-staged": "^5.0.0",
     "prop-types": "^15.6.0",
     "uglifyjs-webpack-plugin": "^1.0.1",
     "webpack": "^3.6.0",
     "webpack-dev-server": "^2.9.1"
   },
   "scripts": {
-    "build": "NODE_ENV=production ./node_modules/.bin/webpack --config ./webpack/webpack.config.prod.js --progress",
-    "start": "NODE_ENV=development ./node_modules/.bin/webpack-dev-server --content-base ./public --hot --config ./webpack/webpack.config.dev.js"
+    "precommit": "lint-staged",
+    "build":
+      "NODE_ENV=production ./node_modules/.bin/webpack --config ./webpack/webpack.config.prod.js --progress",
+    "start":
+      "NODE_ENV=development ./node_modules/.bin/webpack-dev-server --content-base ./public --hot --config ./webpack/webpack.config.dev.js"
+  },
+  "lint-staged": {
+    "*.{js,json,css}": ["prettier --write", "git add"]
   }
 }

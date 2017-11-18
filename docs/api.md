@@ -112,7 +112,9 @@ class ReactArApp extends Component {
 render(<ReactArApp />, document.getElementById('root'))
 ```
 
-### marker
+## Marker component props
+
+Marker component accepts only a single prop `parameters`. You can add following properties to the `parameters` object.
 
 | Property      | Type           | Default  | Supported values |
 | ------------- |:-------------:| -----:| -------------:|
