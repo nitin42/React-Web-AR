@@ -2,3 +2,4 @@ node_modules
 public
 .vscode
 build
+yarn-error.log
