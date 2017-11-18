@@ -20,6 +20,7 @@
 | `canvasHeight` | `number` | `-1` | - |
 | `canvasWidth` | `number` | `-1` | - |
 
+
 ### getSceneRef
 
 `getSceneRef` accepts a function with an argument and returns a reference to `<a-scene>` primitive. This reference can be used to switch the mode to either `stereo` or `mono` or in other words `enterVR()` and `exitVR()`. It can also be used with the events associated with `<a-scene>`.
@@ -112,7 +113,9 @@ class ReactArApp extends Component {
 render(<ReactArApp />, document.getElementById('root'))
 ```
 
-### marker
+## Marker component props
+
+Marker component accepts only a single prop `parameters`. You can add following properties to the `parameters` object.
 
 | Property      | Type           | Default  | Supported values |
 | ------------- |:-------------:| -----:| -------------:|
