@@ -1,24 +1,23 @@
 # React-AR
-**WORK IN PROGRESS**
+> Experimental and work in progress 🚧
 
-🚀  Augmented Reality with React
+<p align="center">
+  <img src="https://i.gyazo.com/8513daffb6fd68b3f123c82a83ab066e.png">
+</p>
 
-## Demo
-[![Demo](https://i.gyazo.com/989ba9e0b69bfe889faed6a61a22aba2.png)](https://twitter.com/NTulswani/status/911284951181438976)
 
-<hr/>
-
-[![Delimiting rotation demo](https://i.gyazo.com/796c71acdf7d2ede29c162bf9cb0929c.png)](https://twitter.com/NTulswani/status/915218481649377280)
 
 ## Documentation
 
 You can find the detailed documentation [here](./docs).
 
-## Interested ?
+## Todo
 
-DM me on [Twitter](https://twitter.com/NTulswani) and we can discuss more ideas 😄
-
-Follow me on Twitter for more updates at [NTulswani](https://twitter.com/NTulswani).
+- [ ] AR Renderer for threejs (not for threejs bindings)
+- [ ] Component for creating portals (not React portal 😅)
+- [ ] Write tests
+- [ ] Add more examples
+- [ ] Cleanup
 
 <a target='_blank' rel='nofollow' href='https://app.codesponsor.io/link/FCRW65HPiwhNtebDx2tTc53E/nitin42/React-AR'>
   <img alt='Sponsor' width='888' height='68' src='https://app.codesponsor.io/embed/FCRW65HPiwhNtebDx2tTc53E/nitin42/React-AR.svg' />
