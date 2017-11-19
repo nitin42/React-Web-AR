@@ -39,6 +39,8 @@ Try changing the prop `sourceType` and `sourceUrl` and notice the behavior when 
 
 > Note - Don't try to import the image when the source type is an image because `sourceUrl` prop expects a relative url for an image. For example - `{ sourceType: 'image', sourceUrl: './some_relative_path_.png'}`. Also, make sure that the image is in the folder that you're serving via a dev server.
 
+Read the docs for [aframe.io](aframe.io) for using the primitives.
+
 ## Creating a custom marker
 
 You can also create and use your own marker. Follow the below steps to create your own marker:
