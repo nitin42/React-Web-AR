@@ -12,7 +12,7 @@ The first script is required to use [aframe](aframe.io) primitives with `AR.js` 
 * Install `React-AR`
 
 ```
-npm install react-web-ar@1.0.0-beta1
+npm install react-web-ar@1.0.0-beta2
 ```
 > `react-ar` name is already taken on npm 😞 
 
