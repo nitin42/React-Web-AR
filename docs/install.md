@@ -18,4 +18,6 @@ npm install react-web-ar@1.0.0-beta1
 
 This is the main package that contains the components to render AR on web.
 
+Also, this depends on `react` so make sure you've installed it. 
+
 [Continue to usage section](./usage.md)
