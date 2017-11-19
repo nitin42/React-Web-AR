@@ -1,20 +1,19 @@
 {
   "name": "react-web-ar",
-  "version": "1.0.0-beta1",
+  "version": "1.0.0-beta2",
   "description": "Augmented Reality with React",
   "main": "build/react-ar.min.js",
   "author": "Nitin Tulswani",
   "license": "MIT",
   "files": ["build"],
-  "dependencies": {
-    "aframe": "^0.7.1",
-    "aframe-particle-system-component": "^1.0.10",
-    "aframe-react": "^4.3.0",
+  "peerDependencies": {
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "three": "^0.87.1"
   },
   "devDependencies": {
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-preset-react-app": "^3.0.3",
