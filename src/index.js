@@ -1,3 +1,7 @@
-import ReactArToolKit from './components/ReactArToolKit'
+import AFrameRenderer from './components/aframe/AFrameRenderer'
+import Marker from './components/aframe/Marker'
 
-export default ReactArToolKit
+export {
+  AFrameRenderer,
+  Marker,
+}

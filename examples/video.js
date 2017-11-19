@@ -1,38 +1,29 @@
-import React, { Component } from 'react'
-import { render } from 'react-dom'
+import React, { Component } from "react";
+import { render } from "react-dom";
 
-import ReactArToolKit from '../src'
+import { AFrameRenderer, Marker } from "../src";
 
-const THREE = require('three')
-
-class ArApp extends Component {
+class ReactArApp extends Component {
   render() {
     return (
-      <ReactArToolKit toolKitSource={{ sourceType: 'video', sourceUrl: './headtracking.mp4' }}>
-        {(scene, accumulator, camera, delimiter) => {
-          // Create 3D object
-          let geometry = new THREE.TorusKnotGeometry(0.3, 0.1, 64, 16)
-          let material = new THREE.MeshNormalMaterial()
-          let mesh = new THREE.Mesh(geometry, material)
-          
-          mesh.position.y = 0.5
-
-          // Add it to scene
-          scene.add(mesh)
-
-          // Append function to render
-          accumulator.push(function(delta) {
-            mesh.rotation.x += Math.PI * delta
-          })
-
-          // Frame per sec (used in controlling animation rate) 
-          delimiter(500)
-        }}
-      </ReactArToolKit>
-    )
+      <AFrameRenderer
+        arToolKit={{ sourceType: "video", sourceUrl: "./headtracking.mp4" }}
+        inherent={true}
+      >
+        <Marker parameters={{ preset: "hiro" }}>
+          <a-box color="blue" position="0 0.09 0" scale="0.4 0.8 0.8">
+            <a-animation
+              attribute="rotation"
+              to="360 0 0"
+              dur="2000"
+              easing="linear"
+              repeat="indefinite"
+            />
+          </a-box>
+        </Marker>
+      </AFrameRenderer>
+    );
   }
 }
 
-render(<ArApp />, document.getElementById('root'))
-
-
+render(<ReactArApp />, document.getElementById("root"));
