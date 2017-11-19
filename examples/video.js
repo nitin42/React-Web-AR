@@ -1,32 +1,26 @@
 import React, { Component } from "react";
 import { render } from "react-dom";
 
-import { AFrameRenderer, ReactArToolKit } from "../src";
-
-const THREE = require("three");
+import { AFrameRenderer, Marker } from "../src";
 
 class ReactArApp extends Component {
   render() {
     return (
       <AFrameRenderer
         arToolKit={{ sourceType: "video", sourceUrl: "./headtracking.mp4" }}
-        marker={{ preset: "hiro" }}
-        inherent={false}
+        inherent={true}
       >
-        <a-box
-          color="red"
-          position="0 0.3 0"
-          rotation="0 45 45"
-          scale="0.18 0.18 0.18"
-        >
-          <a-animation
-            attribute="position"
-            to="0 0.8 0"
-            direction="alternate"
-            dur="800"
-            repeat="indefinite"
-          />
-        </a-box>
+        <Marker parameters={{ preset: "hiro" }}>
+          <a-box color="blue" position="0 0.09 0" scale="0.4 0.8 0.8">
+            <a-animation
+              attribute="rotation"
+              to="360 0 0"
+              dur="2000"
+              easing="linear"
+              repeat="indefinite"
+            />
+          </a-box>
+        </Marker>
       </AFrameRenderer>
     );
   }
