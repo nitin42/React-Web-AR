@@ -1,6 +1,6 @@
 {
   "name": "react-web-ar",
-  "version": "1.0.0-beta0",
+  "version": "1.0.0-beta1",
   "description": "Augmented Reality with React",
   "main": "build/react-ar.min.js",
   "author": "Nitin Tulswani",
