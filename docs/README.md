@@ -15,6 +15,7 @@ This is the documentation for `React-AR`.
 * [Usage](./usage.md)
 * [API Reference](./api.md)
 * [Implementation notes](./implementation.md)
+* [Contributing](./contributing.md)
 
 ## Applications of augmented reality
 
