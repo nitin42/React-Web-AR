@@ -3,6 +3,9 @@ import { render } from "react-dom";
 
 import { AFrameRenderer, Marker } from "../src";
 
+/**
+ * In this example, we use video as source type for analysing the marker
+ */
 class ReactArApp extends Component {
   render() {
     return (
