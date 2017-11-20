@@ -5,8 +5,6 @@
   <img src="https://i.gyazo.com/8513daffb6fd68b3f123c82a83ab066e.png">
 </p>
 
-
-
 ## Documentation
 
 You can find the detailed documentation [here](./docs).
