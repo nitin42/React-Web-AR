@@ -1,5 +1,7 @@
 # Implementation notes
 
+> These notes currently are for my own reference. These notes are for implementing the AR renderer for threejs and its bindings.
+
 ## threex.artoolkit
 
 ### Input parameters for ArToolKitSource
