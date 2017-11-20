@@ -31,7 +31,7 @@ render(<ReactArApp />, document.getElementById('root'))
 
 ```
 
-Now move the `hiro` pattern marker on the webcam, or if you have an image of `hiro` marker or a video. For samples, you can download the assets from [public]() folder in this repo.
+Now move the `hiro` pattern marker on the webcam, or if you have an image of `hiro` marker or a video. For samples, you can download the assets from [public](../public) folder in this repo.
 
 Try changing the prop `sourceType` and `sourceUrl` and notice the behavior when it renders the object.
 
