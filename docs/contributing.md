@@ -2,11 +2,13 @@
 
 If you're looking to contribute to the project, below are steps to setup the project.
 
-* Clone https://github.com/nitin42/React-AR.git
-* cd React-AR
-* yarn install
+```
+git clone https://github.com/nitin42/React-AR.git
+cd React-AR
+yarn install
+```
 
-**Run the example on the development server at http://127.0.0.1:8000/**
+**Run the example on the development server at `http://127.0.0.1:8000/`**
 
 ```
 yarn start
