@@ -12,10 +12,12 @@ The first script is required to use [aframe](aframe.io) primitives with `AR.js` 
 * Install `React-AR`
 
 ```
-npm install react-web-ar@1.0.0-beta1
+npm install react-web-ar@1.0.0-beta2
 ```
 > `react-ar` name is already taken on npm 😞 
 
 This is the main package that contains the components to render AR on web.
+
+Also, this depends on `react` so make sure you've installed it. 
 
 [Continue to usage section](./usage.md)
