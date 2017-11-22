@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="600" height="350" src="../art/React-Web-AR.png">
+  <img src="../art/React-Web-AR.png">
 </p>
 
 # Documentation
