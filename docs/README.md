@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="600" height="350" src="https://i.gyazo.com/8513daffb6fd68b3f123c82a83ab066e.png">
+  <img width="600" height="350" src="../art/React-Web-AR.png">
 </p>
 
 # Documentation
