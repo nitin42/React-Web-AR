@@ -1,4 +1,4 @@
-# React-AR
+# React-Web-AR
 > Experimental and work in progress 🚧
 
 <p align="center">
