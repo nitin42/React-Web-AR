@@ -19,7 +19,19 @@
 | `maxDetectionRate` | `number` | `-1` | - |
 | `canvasHeight` | `number` | `-1` | - |
 | `canvasWidth` | `number` | `-1` | - |
+| `trackingMethod` | `string` | `best` | ['tango', 'artoolkit', 'best', 'arjs'] |
+| `areaLearningButton` | `boolean` | `true` | - |
+| `performanceProfile` | `string` | `default` | - |
+| `tangoPointCloudEnabled` | `boolean` | `false` | - |
 
+`trackingMethod` decides which tracking module to use. If set to `best`, it always tries to provide the best tracking module available on a device.
+
+* If you use a tango device, it will use tango tracking.
+* If you use a normal device, it will use pure web based tracking.
+* If you use an iOS device, it will use `artoolkit`.
+
+Tango tracking means markerless tracking. Using tango tracking, you can add virtual objects by selecting positions in real world.
+This tracking module is robust, efficient and mature. Read more about tango tracking [here](https://developers.google.com/tango/overview/concepts).
 
 ### getSceneRef
 
@@ -125,6 +137,9 @@ Marker component accepts only a single prop `parameters`. You can add following 
 | `barcodeValue` | `number` | `null` (initialise a bar code value when the type is `barcode`) | - |
 | `minConfidence` | `number` | `0.6` | - |
 | `preset` | `string` | `'hiro'` | ['hiro', 'kanji', 'custom']
+| `hit-testing-enabled` | `boolean` | `false` | - |
+| `hit-testing-renderDebug` | `boolean` | `false` | - |
 
+> Hit Testing - Process of determining whether the user controlled cursor intersects a graphic object or not. It is used in graphics programming for detecting the intersection.
 
 [Continue to implementation notes section](./implementation.md)
