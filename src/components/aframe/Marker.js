@@ -13,7 +13,9 @@ export default class Marker extends Component {
       changeMatrixMode: PropTypes.string,
       minConfidence: PropTypes.number,
       preset: PropTypes.string,
-      markerhelpers: PropTypes.bool
+      markerhelpers: PropTypes.bool,
+      "hit-testing-enabled": PropTypes.bool,
+      "hit-testing-renderDebug": PropTypes.bool
     })
   };
 

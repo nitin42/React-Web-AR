@@ -15,7 +15,11 @@ const PARAMETERS = [
   "displayHeight",
   "displayWidth",
   "canvasWidth",
-  "canvasHeight"
+  "canvasHeight",
+  "trackingMethod", // Tracking module backend ['tango', 'artoolkit']
+  "areaLearningButton",
+  "performanceProfile",
+  "tangoPointCloudEnabled"
 ];
 
 /**
