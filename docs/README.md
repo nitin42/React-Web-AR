@@ -13,6 +13,7 @@ This is the documentation for `React-Web-AR`.
 * [Demo](./demo.md)
 * [Install](./install.md)
 * [Usage](./usage.md)
+* [Examples](./examples.md)
 * [API Reference](./api.md)
 * [Implementation notes](./implementation.md)
 * [Contributing](./contributing.md)
