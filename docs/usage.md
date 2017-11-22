@@ -41,6 +41,8 @@ Try changing the prop `sourceType` and `sourceUrl` and notice the behavior when 
 
 Read the docs for [aframe.io](aframe.io) for using the primitives.
 
+Checkout the [examples](../examples) repo for more examples. 
+
 ## Creating a custom marker
 
 You can also create and use your own marker. Follow the below steps to create your own marker:
