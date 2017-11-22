@@ -33,6 +33,8 @@
 Tango tracking means markerless tracking. Using tango tracking, you can add virtual objects by selecting positions in real world.
 This tracking module is robust, efficient and mature. Read more about tango tracking [here](https://developers.google.com/tango/overview/concepts).
 
+See the example for tango tracking [here](../examples/tangoTracking.js)
+
 ### getSceneRef
 
 `getSceneRef` accepts a function with an argument and returns a reference to `<a-scene>` primitive. This reference can be used to switch the mode to either `stereo` or `mono` or in other words `enterVR()` and `exitVR()`. It can also be used with the events associated with `<a-scene>`.
