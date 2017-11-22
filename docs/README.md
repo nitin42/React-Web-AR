@@ -4,7 +4,7 @@
 
 # Documentation
 
-This is the documentation for `React-AR`.
+This is the documentation for `React-Web-AR`.
 
 ## Table of contents
 

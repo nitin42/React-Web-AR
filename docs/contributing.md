@@ -3,8 +3,8 @@
 If you're looking to contribute to the project, below are steps to setup the project.
 
 ```
-git clone https://github.com/nitin42/React-AR.git
-cd React-AR
+git clone https://github.com/nitin42/React-Web-AR.git
+cd React-Web-AR
 yarn install
 ```
 

@@ -1,6 +1,6 @@
 # Demo
 
-Given below are the two links which show the working demo for `React-AR`.
+Given below are the two links which show the working demo for `React-Web-AR`.
 
 [Demo](https://twitter.com/NTulswani/status/911284951181438976)
 

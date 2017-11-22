@@ -9,12 +9,11 @@
 
 The first script is required to use [aframe](aframe.io) primitives with `AR.js` and the other script registers the `arjs` component in aframe which is required to configure the ARToolKit system.
 
-* Install `React-AR`
+* Install `React-Web-AR`
 
 ```
 npm install react-web-ar@1.0.0-beta2
 ```
-> `react-ar` name is already taken on npm 😞 
 
 This is the main package that contains the components to render AR on web.
 

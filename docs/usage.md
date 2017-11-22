@@ -2,7 +2,7 @@
 
 ## aframe.io
 
-Below is an example which shows the `React-AR` usage with [aframe.io](aframe.io) primitives.
+Below is an example which shows the `React-Web-AR` usage with [aframe.io](aframe.io) primitives.
 
 ```jsx
 import React, { Component } from 'react'
