@@ -19,7 +19,7 @@
 | `maxDetectionRate` | `number` | `-1` | - |
 | `canvasHeight` | `number` | `-1` | - |
 | `canvasWidth` | `number` | `-1` | - |
-| `trackingMethod` | `string` | `best` | ['tango', 'artoolkit', 'best', 'arjs'] |
+| `trackingMethod` | `string` | `best` | ['tango', 'artoolkit', 'best'] |
 | `areaLearningButton` | `boolean` | `true` | - |
 | `performanceProfile` | `string` | `default` | - |
 | `tangoPointCloudEnabled` | `boolean` | `false` | - |
