@@ -2,7 +2,7 @@
 > Experimental and work in progress 🚧
 
 <p align="center">
-  <img src="https://i.gyazo.com/8513daffb6fd68b3f123c82a83ab066e.png">
+  <img src="./art/React-Web-AR.png">
 </p>
 
 ## Documentation
