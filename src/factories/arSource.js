@@ -6,11 +6,6 @@ function initialiseARSource(arContext, props, renderer) {
     // Do something when source initialises
   });
 
-  // handle resize
-  window.addEventListener("resize", function() {
-    onResize();
-  });
-
   function onResize() {
     arSource.onResizeElement();
     arSource.copyElementSizeTo(renderer.domElement);
@@ -18,6 +13,11 @@ function initialiseARSource(arContext, props, renderer) {
       arSource.copyElementSizeTo(arContext.arController.canvas);
     }
   }
+
+  // handle resize
+  window.addEventListener("resize", function() {
+    onResize();
+  });
 
   return arSource;
 }

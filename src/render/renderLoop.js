@@ -11,6 +11,7 @@ function renderLoop(accumulator, scene, camera, renderer, renderFn) {
 
   // run the rendering loop
   let lastTimeMsec = null;
+
   requestAnimationFrame(function animate(nowMsec) {
     // keep looping
     requestAnimationFrame(animate);

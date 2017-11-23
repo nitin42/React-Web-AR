@@ -41,6 +41,10 @@ export default class Initialise extends Component {
     this.renderer = initGlRenderer(this.props);
     this.scene = createScene(this.props);
     this.camera = createCamera(this.props);
+
+    // Add camera to the scene so that we can see the augmented image
+    // Remove this and you won't be able to see the virtual object
+    this.scene.add(this.camera);
   }
 
   componentWillMount = () => {

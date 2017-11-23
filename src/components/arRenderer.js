@@ -49,6 +49,12 @@ export default class ARRenderer extends Component {
 
     this.update();
 
+    this.arMarkerControl = initialiseMarker(
+      this.arContext,
+      this.context.camera,
+      this.props.marker
+    );
+
     this.renderAccumulatorState();
   };
 
@@ -62,17 +68,12 @@ export default class ARRenderer extends Component {
       this.props.source,
       renderer
     );
-
-    this.arMarkerControl = initialiseMarker(
-      this.arContext,
-      camera,
-      this.props.marker
-    );
   };
 
   update = () => {
     const { camera, scene } = this.context;
 
+    // Process the renderer
     updateOnEveryFrame(
       this.state.accumulator,
       this.arSource,
@@ -85,7 +86,7 @@ export default class ARRenderer extends Component {
   renderAccumulatorState = () => {
     const { camera, scene, renderer } = this.context;
 
-    // This just tracks the scene visible status (does not return anything)
+    // This is just to get a reference
     this.output = renderLoop(
       this.state.accumulator,
       scene,
