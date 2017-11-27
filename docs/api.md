@@ -144,4 +144,24 @@ Marker component accepts only a single prop `parameters`. You can add following 
 
 > Hit Testing - Process of determining whether the user controlled cursor intersects a graphic object or not. It is used in graphics programming for detecting the intersection.
 
+`Marker` component is used to attach the augmented reality (virtual component). So you can use it to attach virtual objects if you're using `tango` as tracking module even though tango tracking is markerless. You can say that, `Marker` component is the cornerstone on which you depend to add virtual components in your scene.
+
+**Example for tango tracking module**
+
+```js
+<AFrameRenderer arToolKit={{ trackingMethod: "tango" }}>
+  <Marker parameters={{ "hit-testing-enabled": true }}>
+    <a-box color="blue" position="0 0.09 0" scale="0.4 0.8 0.8">
+      <a-animation
+        attribute="rotation"
+        to="360 0 0"
+        dur="2000"
+        easing="linear"
+        repeat="indefinite"
+      />
+    </a-box>
+  </Marker>
+</AFrameRenderer>
+```
+
 [Continue to implementation notes section](./implementation.md)
