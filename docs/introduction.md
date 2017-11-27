@@ -29,4 +29,16 @@ This project aims to bridge AR with React to create AR on the web. It uses AR.js
 * Declaratively controlling the render loop (for threejs renderer).
 * Easy to create AR content that can be used and integrated in a React app.
 
+## What it tries to solve?
+
+This project is based on [AR.js](https://github.com/jeromeetienne/AR.js). It provides an abstraction over artoolkit and also enables composition with the custom React components so that you can create AR content on web with ease. Also, its difficult to use the `AR.js` APIs because they aren't well documented and its only possible to learn them by looking at each example (which isn't convenient) and analysing the program structure.
+
+So this project tries to eliminate the learning curve for the APIs and provides an abstraction over the artoolkit core components so that you can understand and create AR content on the web.
+
+## Future
+
+* [webxr-api proposal](https://github.com/mozilla/webxr-api)
+* [WebAssembly](http://webassembly.org/)
+* Marker less detection
+
 [Continue to concepts section](./concepts.md)
